@@ -5,6 +5,6 @@ import com.lboeri.boeriapi.dao.common.entity.ApiConfigEntity;
 import java.util.List;
 
 public interface BoeriService {
-    ApiConfigEntity findApiConfig(String id);
+    List<ApiConfigEntity> findApiConfig(String id);
 
 }

@@ -1,8 +1,10 @@
 package com.lboeri.boeriapi.dao.common.dao;
 
 import com.lboeri.boeriapi.dao.common.entity.ApiConfigEntity;
+import org.apache.ibatis.annotations.Mapper;
 
-public interface ApiConfigEntityMapper {
+@Mapper
+public interface ApiConfigEntityMapper{
     int deleteByPrimaryKey(String id);
 
     int insert(ApiConfigEntity record);

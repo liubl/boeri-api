@@ -1,10 +1,11 @@
 package com.lboeri.boeriapi.service;
 
-import com.lboeri.boeriapi.dao.common.dao.ApiConfigEntityMapper;
 import com.lboeri.boeriapi.dao.common.entity.ApiConfigEntity;
 import com.lboeri.boeriapi.dao.singleton.dao.ApiConfigEntitySgMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class BoeriServiceImpl implements BoeriService {
@@ -13,8 +14,8 @@ public class BoeriServiceImpl implements BoeriService {
     ApiConfigEntitySgMapper configEntitySgMapper;
 
     @Override
-    public ApiConfigEntity findApiConfig(String id) {
-        ApiConfigEntity config = configEntitySgMapper.selectByPrimaryKey(id);
+    public List<ApiConfigEntity> findApiConfig(String id) {
+        List<ApiConfigEntity> config = configEntitySgMapper.selectByEntity(null);
         return config;
     }
 }

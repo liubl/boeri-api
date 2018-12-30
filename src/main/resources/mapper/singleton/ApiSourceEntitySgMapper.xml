@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lboeri.boeriapi.dao.singleton.dao.ApiSourceEntityMapper">
+  <resultMap id="BaseResultMap" type="com.lboeri.boeriapi.dao.common.entity.ApiSourceEntity">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="dsid" jdbcType="INTEGER" property="dsid" />
+    <result column="dbtype" jdbcType="VARCHAR" property="dbtype" />
+    <result column="driverclassname" jdbcType="VARCHAR" property="driverclassname" />
+    <result column="url" jdbcType="VARCHAR" property="url" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="initialsize" jdbcType="INTEGER" property="initialsize" />
+    <result column="maxactive" jdbcType="INTEGER" property="maxactive" />
+    <result column="minidle" jdbcType="INTEGER" property="minidle" />
+    <result column="maxwait" jdbcType="INTEGER" property="maxwait" />
+    <result column="removeabandoned" jdbcType="CHAR" property="removeabandoned" />
+    <result column="removeabandonedtimeout" jdbcType="INTEGER" property="removeabandonedtimeout" />
+    <result column="timebetweenevictionrunsmillis" jdbcType="INTEGER" property="timebetweenevictionrunsmillis" />
+    <result column="minevictableidletimemillis" jdbcType="INTEGER" property="minevictableidletimemillis" />
+    <result column="validationquery" jdbcType="VARCHAR" property="validationquery" />
+    <result column="testwhileidle" jdbcType="CHAR" property="testwhileidle" />
+    <result column="testonborrow" jdbcType="CHAR" property="testonborrow" />
+    <result column="testonreturn" jdbcType="CHAR" property="testonreturn" />
+    <result column="poolpreparedstatements" jdbcType="CHAR" property="poolpreparedstatements" />
+    <result column="maxpoolprestatperconnsize" jdbcType="INTEGER" property="maxpoolprestatperconnsize" />
+    <result column="filters" jdbcType="VARCHAR" property="filters" />
+    <result column="hooktime" jdbcType="INTEGER" property="hooktime" />
+    <result column="hooks" jdbcType="VARCHAR" property="hooks" />
+    <result column="create_by" jdbcType="VARCHAR" property="createBy" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="update_by" jdbcType="VARCHAR" property="updateBy" />
+    <result column="update_date" jdbcType="TIMESTAMP" property="updateDate" />
+    <result column="remarks" jdbcType="VARCHAR" property="remarks" />
+    <result column="del_flag" jdbcType="CHAR" property="delFlag" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, dsid, dbtype, driverclassname, url, username, password, initialsize, maxactive, 
+    minidle, maxwait, removeabandoned, removeabandonedtimeout, timebetweenevictionrunsmillis, 
+    minevictableidletimemillis, validationquery, testwhileidle, testonborrow, testonreturn, 
+    poolpreparedstatements, maxpoolprestatperconnsize, filters, hooktime, hooks, create_by, 
+    create_date, update_by, update_date, remarks, del_flag
+  </sql>
+  <select id="selectByEntity" parameterType="com.lboeri.boeriapi.dao.common.entity.ApiSourceEntity" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from TBL_API_SOURCE
+    <where>
+      <if test="dsid != null">
+        dsid = #{dsid,jdbcType=INTEGER},
+      </if>
+      <if test="dbtype != null">
+        AND dbtype = #{dbtype,jdbcType=VARCHAR},
+      </if>
+      <if test="driverclassname != null">
+        AND driverclassname = #{driverclassname,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        AND url = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null">
+        AND username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        AND password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="initialsize != null">
+        AND initialsize = #{initialsize,jdbcType=INTEGER},
+      </if>
+      <if test="maxactive != null">
+        AND maxactive = #{maxactive,jdbcType=INTEGER},
+      </if>
+      <if test="minidle != null">
+        AND minidle = #{minidle,jdbcType=INTEGER},
+      </if>
+      <if test="maxwait != null">
+        AND maxwait = #{maxwait,jdbcType=INTEGER},
+      </if>
+      <if test="removeabandoned != null">
+        AND removeabandoned = #{removeabandoned,jdbcType=CHAR},
+      </if>
+      <if test="removeabandonedtimeout != null">
+        AND removeabandonedtimeout = #{removeabandonedtimeout,jdbcType=INTEGER},
+      </if>
+      <if test="timebetweenevictionrunsmillis != null">
+        AND timebetweenevictionrunsmillis = #{timebetweenevictionrunsmillis,jdbcType=INTEGER},
+      </if>
+      <if test="minevictableidletimemillis != null">
+        AND minevictableidletimemillis = #{minevictableidletimemillis,jdbcType=INTEGER},
+      </if>
+      <if test="validationquery != null">
+        AND validationquery = #{validationquery,jdbcType=VARCHAR},
+      </if>
+      <if test="testwhileidle != null">
+        AND testwhileidle = #{testwhileidle,jdbcType=CHAR},
+      </if>
+      <if test="testonborrow != null">
+        AND testonborrow = #{testonborrow,jdbcType=CHAR},
+      </if>
+      <if test="testonreturn != null">
+        AND testonreturn = #{testonreturn,jdbcType=CHAR},
+      </if>
+      <if test="poolpreparedstatements != null">
+        AND poolpreparedstatements = #{poolpreparedstatements,jdbcType=CHAR},
+      </if>
+      <if test="maxpoolprestatperconnsize != null">
+        AND maxpoolprestatperconnsize = #{maxpoolprestatperconnsize,jdbcType=INTEGER},
+      </if>
+      <if test="filters != null">
+        AND filters = #{filters,jdbcType=VARCHAR},
+      </if>
+      <if test="hooktime != null">
+        AND hooktime = #{hooktime,jdbcType=INTEGER},
+      </if>
+      <if test="hooks != null">
+        AND hooks = #{hooks,jdbcType=VARCHAR},
+      </if>
+      <if test="createBy != null">
+        AND create_by = #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        AND create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null">
+        AND update_by = #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDate != null">
+        AND update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remarks != null">
+        AND remarks = #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null">
+        AND del_flag = #{delFlag,jdbcType=CHAR},
+      </if>
+    </where>
+  </select>
+  <delete id="deleteEntity" parameterType="com.lboeri.boeriapi.dao.common.entity.ApiSourceEntity">
+    delete from TBL_API_SOURCE
+    <where>
+      <if test="dsid != null">
+        dsid = #{dsid,jdbcType=INTEGER},
+      </if>
+      <if test="dbtype != null">
+        AND dbtype = #{dbtype,jdbcType=VARCHAR},
+      </if>
+      <if test="driverclassname != null">
+        AND driverclassname = #{driverclassname,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        AND url = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null">
+        AND username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        AND password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="initialsize != null">
+        AND initialsize = #{initialsize,jdbcType=INTEGER},
+      </if>
+      <if test="maxactive != null">
+        AND maxactive = #{maxactive,jdbcType=INTEGER},
+      </if>
+      <if test="minidle != null">
+        AND minidle = #{minidle,jdbcType=INTEGER},
+      </if>
+      <if test="maxwait != null">
+        AND maxwait = #{maxwait,jdbcType=INTEGER},
+      </if>
+      <if test="removeabandoned != null">
+        AND removeabandoned = #{removeabandoned,jdbcType=CHAR},
+      </if>
+      <if test="removeabandonedtimeout != null">
+        AND removeabandonedtimeout = #{removeabandonedtimeout,jdbcType=INTEGER},
+      </if>
+      <if test="timebetweenevictionrunsmillis != null">
+        AND timebetweenevictionrunsmillis = #{timebetweenevictionrunsmillis,jdbcType=INTEGER},
+      </if>
+      <if test="minevictableidletimemillis != null">
+        AND minevictableidletimemillis = #{minevictableidletimemillis,jdbcType=INTEGER},
+      </if>
+      <if test="validationquery != null">
+        AND validationquery = #{validationquery,jdbcType=VARCHAR},
+      </if>
+      <if test="testwhileidle != null">
+        AND testwhileidle = #{testwhileidle,jdbcType=CHAR},
+      </if>
+      <if test="testonborrow != null">
+        AND testonborrow = #{testonborrow,jdbcType=CHAR},
+      </if>
+      <if test="testonreturn != null">
+        AND testonreturn = #{testonreturn,jdbcType=CHAR},
+      </if>
+      <if test="poolpreparedstatements != null">
+        AND poolpreparedstatements = #{poolpreparedstatements,jdbcType=CHAR},
+      </if>
+      <if test="maxpoolprestatperconnsize != null">
+        AND maxpoolprestatperconnsize = #{maxpoolprestatperconnsize,jdbcType=INTEGER},
+      </if>
+      <if test="filters != null">
+        AND filters = #{filters,jdbcType=VARCHAR},
+      </if>
+      <if test="hooktime != null">
+        AND hooktime = #{hooktime,jdbcType=INTEGER},
+      </if>
+      <if test="hooks != null">
+        AND hooks = #{hooks,jdbcType=VARCHAR},
+      </if>
+      <if test="createBy != null">
+        AND create_by = #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        AND create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null">
+        AND update_by = #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDate != null">
+        AND update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remarks != null">
+        AND remarks = #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null">
+        AND del_flag = #{delFlag,jdbcType=CHAR},
+      </if>
+    </where>
+  </delete>
+</mapper>

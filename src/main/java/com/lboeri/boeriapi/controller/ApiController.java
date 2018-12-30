@@ -1,12 +1,15 @@
 package com.lboeri.boeriapi.controller;
 
-import com.lboeri.boeriapi.record.Greeting;
-import com.lboeri.boeriapi.service.BoeriService;
+import com.lboeri.boeriapi.dao.common.entity.ApiConfigEntity;
+import com.lboeri.boeriapi.dao.singleton.dao.ApiConfigEntitySgMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.concurrent.atomic.AtomicLong;
 
 @RestController
@@ -15,12 +18,15 @@ public class ApiController {
     private final AtomicLong counter = new AtomicLong();
 
     @Autowired
-    BoeriService boeriServiceImp;
+    ApiConfigEntitySgMapper apiConfigEntitySgMapper;
 
     @RequestMapping("/greeting")
-    public Greeting greeting(@RequestParam(value="name", defaultValue="World") String name) {
-        boeriServiceImp.findApiConfig("getUserCityInfo");
-        return new Greeting(counter.incrementAndGet(),
-                String.format(template, name));
+    public Map greeting(@RequestParam(value="name", defaultValue="World") String name) {
+        ApiConfigEntity entity = new ApiConfigEntity();
+        Map map = new HashMap();
+        entity.setApiname("getUserCityInfo");
+        List list = apiConfigEntitySgMapper.selectByEntity(entity);
+        map.put("obj",list);
+        return map;
     }
 }

@@ -1,7 +1,9 @@
 package com.lboeri.boeriapi.dao.common.dao;
 
 import com.lboeri.boeriapi.dao.common.entity.ApiSourceEntity;
+import org.apache.ibatis.annotations.Mapper;
 
+@Mapper
 public interface ApiSourceEntityMapper {
     int deleteByPrimaryKey(String id);
 
