@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.lboeri.boeriapi.dao.singleton.dao.ApiConfigEntityMapper">
+<mapper namespace="com.lboeri.boeriapi.dao.singleton.ApiConfigEntitySgMapper">
   <resultMap id="BaseResultMap" type="com.lboeri.boeriapi.dao.common.entity.ApiConfigEntity">
     <id column="id" jdbcType="VARCHAR" property="id" />
     <result column="apiname" jdbcType="VARCHAR" property="apiname" />
@@ -36,49 +36,49 @@
     from TBL_API_CONFIG
     <where>
       <if test="apiname != null">
-        apiname = #{apiname,jdbcType=VARCHAR},
+        apiname = #{apiname,jdbcType=VARCHAR}
       </if>
       <if test="apiip != null">
-        AND apiip = #{apiip,jdbcType=VARCHAR},
+        AND apiip = #{apiip,jdbcType=VARCHAR}
       </if>
       <if test="apiport != null">
-        AND apiport = #{apiport,jdbcType=VARCHAR},
+        AND apiport = #{apiport,jdbcType=VARCHAR}
       </if>
       <if test="apipath != null">
-        AND apipath = #{apipath,jdbcType=VARCHAR},
+        AND apipath = #{apipath,jdbcType=VARCHAR}
       </if>
       <if test="queryparams != null">
-        AND queryparams = #{queryparams,jdbcType=VARCHAR},
+        AND queryparams = #{queryparams,jdbcType=VARCHAR}
       </if>
       <if test="sqlparams != null">
-        AND sqlparams = #{sqlparams,jdbcType=VARCHAR},
+        AND sqlparams = #{sqlparams,jdbcType=VARCHAR}
       </if>
       <if test="dsid != null">
-        AND dsid = #{dsid,jdbcType=INTEGER},
+        AND dsid = #{dsid,jdbcType=INTEGER}
       </if>
       <if test="publishFlag != null">
-        AND publish_flag = #{publishFlag,jdbcType=CHAR},
+        AND publish_flag = #{publishFlag,jdbcType=CHAR}
       </if>
       <if test="createBy != null">
-        AND create_by = #{createBy,jdbcType=VARCHAR},
+        AND create_by = #{createBy,jdbcType=VARCHAR}
       </if>
       <if test="createDate != null">
-        AND create_date = #{createDate,jdbcType=TIMESTAMP},
+        AND create_date = #{createDate,jdbcType=TIMESTAMP}
       </if>
       <if test="updateBy != null">
-        AND update_by = #{updateBy,jdbcType=VARCHAR},
+        AND update_by = #{updateBy,jdbcType=VARCHAR}
       </if>
       <if test="updateDate != null">
-        AND update_date = #{updateDate,jdbcType=TIMESTAMP},
+        AND update_date = #{updateDate,jdbcType=TIMESTAMP}
       </if>
       <if test="remarks != null">
-        AND remarks = #{remarks,jdbcType=VARCHAR},
+        AND remarks = #{remarks,jdbcType=VARCHAR}
       </if>
       <if test="delFlag != null">
-        AND del_flag = #{delFlag,jdbcType=CHAR},
+        AND del_flag = #{delFlag,jdbcType=CHAR}
       </if>
       <if test="querySql != null">
-        AND query_sql = #{querySql,jdbcType=LONGVARCHAR},
+        AND query_sql = #{querySql,jdbcType=LONGVARCHAR}
       </if>
     </where>
   </select>
@@ -86,49 +86,49 @@
     delete from TBL_API_CONFIG
     <where>
       <if test="apiname != null">
-        apiname = #{apiname,jdbcType=VARCHAR},
+        apiname = #{apiname,jdbcType=VARCHAR}
       </if>
       <if test="apiip != null">
-        AND apiip = #{apiip,jdbcType=VARCHAR},
+        AND apiip = #{apiip,jdbcType=VARCHAR}
       </if>
       <if test="apiport != null">
-        AND apiport = #{apiport,jdbcType=VARCHAR},
+        AND apiport = #{apiport,jdbcType=VARCHAR}
       </if>
       <if test="apipath != null">
-        AND apipath = #{apipath,jdbcType=VARCHAR},
+        AND apipath = #{apipath,jdbcType=VARCHAR}
       </if>
       <if test="queryparams != null">
-        AND queryparams = #{queryparams,jdbcType=VARCHAR},
+        AND queryparams = #{queryparams,jdbcType=VARCHAR}
       </if>
       <if test="sqlparams != null">
-        AND sqlparams = #{sqlparams,jdbcType=VARCHAR},
+        AND sqlparams = #{sqlparams,jdbcType=VARCHAR}
       </if>
       <if test="dsid != null">
-        AND dsid = #{dsid,jdbcType=INTEGER},
+        AND dsid = #{dsid,jdbcType=INTEGER}
       </if>
       <if test="publishFlag != null">
-        AND publish_flag = #{publishFlag,jdbcType=CHAR},
+        AND publish_flag = #{publishFlag,jdbcType=CHAR}
       </if>
       <if test="createBy != null">
-        AND create_by = #{createBy,jdbcType=VARCHAR},
+        AND create_by = #{createBy,jdbcType=VARCHAR}
       </if>
       <if test="createDate != null">
         AND create_date = #{createDate,jdbcType=TIMESTAMP},
       </if>
       <if test="updateBy != null">
-        AND update_by = #{updateBy,jdbcType=VARCHAR},
+        AND update_by = #{updateBy,jdbcType=VARCHAR}
       </if>
       <if test="updateDate != null">
         AND update_date = #{updateDate,jdbcType=TIMESTAMP},
       </if>
       <if test="remarks != null">
-        AND remarks = #{remarks,jdbcType=VARCHAR},
+        AND remarks = #{remarks,jdbcType=VARCHAR}
       </if>
       <if test="delFlag != null">
-        AND del_flag = #{delFlag,jdbcType=CHAR},
+        AND del_flag = #{delFlag,jdbcType=CHAR}
       </if>
       <if test="querySql != null">
-        AND query_sql = #{querySql,jdbcType=LONGVARCHAR},
+        AND query_sql = #{querySql,jdbcType=LONGVARCHAR}
       </if>
     </where>
   </delete>

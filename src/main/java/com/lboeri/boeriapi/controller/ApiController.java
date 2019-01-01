@@ -1,7 +1,7 @@
 package com.lboeri.boeriapi.controller;
 
 import com.lboeri.boeriapi.dao.common.entity.ApiConfigEntity;
-import com.lboeri.boeriapi.dao.singleton.dao.ApiConfigEntitySgMapper;
+import com.lboeri.boeriapi.dao.singleton.ApiConfigEntitySgMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;

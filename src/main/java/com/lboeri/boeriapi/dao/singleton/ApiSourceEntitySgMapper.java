@@ -1,4 +1,4 @@
-package com.lboeri.boeriapi.dao.singleton.dao;
+package com.lboeri.boeriapi.dao.singleton;
 
 import com.lboeri.boeriapi.dao.common.entity.ApiSourceEntity;
 import org.apache.ibatis.annotations.Mapper;
