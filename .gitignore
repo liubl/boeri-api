@@ -1,0 +1,16 @@
+
+.idea/vcs.xml
+target/classes/com/lboeri/boeriapi/dao/singleton/ApiConfigEntitySgMapper.class
+target/classes/com/lboeri/boeriapi/dao/MybatisConfig.class
+*.class
+target/classes/mapper/common/ApiConfigEntityMapper.xml
+target/classes/log4j2.xml
+target/classes/application.properties
+target/classes/mapper/common/ApiSourceEntityMapper.xml
+target/classes/mapper/singleton/ApiConfigEntitySgMapper.xml
+target/classes/mapper/singleton/ApiSourceEntitySgMapper.xml
+.idea/compiler.xml
+.idea/encodings.xml
+.idea/misc.xml
+.idea/uiDesigner.xml
+.idea/workspace.xml
