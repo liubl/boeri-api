@@ -37,7 +37,7 @@ public class MybatisConfig {
 //
 //    }
 
-    //@Bean(name = "dataSource")
+    @Bean(name = "dataSource")
     public DataSourceRouter dataSource() {
 
         /**
@@ -62,8 +62,39 @@ public class MybatisConfig {
         dataSource.setPassword(dataSourceProperties.getPassword());
         targetDataSources.put("defualt", dataSource);
         try {
-            String sql = "";
-            preparedStatement = dataSource.getConnection(1).prepareStatement(sql);
+            StringBuffer sql = new StringBuffer("");
+            sql.append(" SELECT id   as \"ID\" , ");
+            sql.append("        dsid   as \"DSID\" , ");
+            sql.append("        dbtype   as \"DBTYPE\" , ");
+            sql.append("        driverclassname   as \"DRIVERCLASSNAME\" , ");
+            sql.append("        url   as \"URL\" , ");
+            sql.append("        username   as \"USERNAME\" , ");
+            sql.append("        password   as \"PASSWORD\" , ");
+            sql.append("        initialsize   as \"INITIALSIZE\" , ");
+            sql.append("        maxactive   as \"MAXACTIVE\" , ");
+            sql.append("        minidle   as \"MINIDLE\" , ");
+            sql.append("        maxwait   as \"MAXWAIT\" , ");
+            sql.append("        removeabandoned   as \"REMOVEABANDONED\" , ");
+            sql.append("        removeabandonedtimeout   as \"REMOVEABANDONEDTIMEOUT\" , ");
+            sql.append("        timebetweenevictionrunsmillis   as \"TIMEBETWEENEVICTIONRUNSMILLIS\" , ");
+            sql.append("        minevictableidletimemillis   as \"MINEVICTABLEIDLETIMEMILLIS\" , ");
+            sql.append("        validationquery   as \"VALIDATIONQUERY\" , ");
+            sql.append("        testwhileidle   as \"TESTWHILEIDLE\" , ");
+            sql.append("        testonborrow   as \"TESTONBORROW\" , ");
+            sql.append("        testonreturn   as \"TESTONRETURN\" , ");
+            sql.append("        poolpreparedstatements   as \"POOLPREPAREDSTATEMENTS\" , ");
+            sql.append("        maxpoolprestatperconnsize   as \"MAXPOOLPRESTATPERCONNSIZE\" , ");
+            sql.append("        filters   as \"FILTERS\" , ");
+            sql.append("        hooktime   as \"HOOKTIME\" , ");
+            sql.append("        hooks   as \"HOOKS\" , ");
+            sql.append("        create_by   as \"CREATE_BY\" , ");
+            sql.append("        create_date   as \"CREATE_DATE\" , ");
+            sql.append("        update_by   as \"UPDATE_BY\" , ");
+            sql.append("        update_date   as \"UPDATE_DATE\" , ");
+            sql.append("        remarks   as \"REMARKS\" , ");
+            sql.append("        del_flag   as \"DEL_FLAG\"   ");
+            sql.append(" FROM TBL_API_SOURCE  ");
+            preparedStatement = dataSource.getConnection().prepareStatement(sql.toString());
             // 执行
             resultSet = preparedStatement.executeQuery();
 
@@ -81,6 +112,13 @@ public class MybatisConfig {
                 Map<String, Object> map = new HashMap<String, Object>();
                 for (int i = 1; i <= columnCount; i++) {
                     map.put(rsmd.getColumnLabel(i), resultSet.getObject(i));
+                    System.out.println(rsmd.getColumnLabel(i));
+                    DruidDataSource dataSourceclust = new DruidDataSource();
+                    dataSourceclust.setUrl(dataSourceProperties.getUrl());
+                    dataSourceclust.setDriverClassName(dataSourceProperties.getDriverClassName());
+                    dataSourceclust.setUsername(dataSourceProperties.getUsername());
+                    dataSourceclust.setPassword(dataSourceProperties.getPassword());
+                    targetDataSources.put("defualt", dataSourceclust);
                 }
                 list.add(map);
             }
