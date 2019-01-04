@@ -1,5 +1,6 @@
 package com.lboeri.boeriapi.controller;
 
+import com.lboeri.boeriapi.dao.DatabaseContextHolder;
 import com.lboeri.boeriapi.dao.common.entity.ApiConfigEntity;
 import com.lboeri.boeriapi.dao.singleton.ApiConfigEntitySgMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,7 @@ public class ApiController {
         ApiConfigEntity entity = new ApiConfigEntity();
         Map map = new HashMap();
         entity.setApiname("getUserCityInfo");
+        //DatabaseContextHolder.setDataSourceType("289facb6f21546e287a369ebc2e958be");
         List list = apiConfigEntitySgMapper.selectByEntity(entity);
         map.put("obj",list);
         return map;
