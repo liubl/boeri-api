@@ -1,10 +1,8 @@
 package com.lboeri.boeriapi.service;
 
-import com.lboeri.boeriapi.dao.common.entity.ApiConfigEntity;
-
-import java.util.List;
+import java.util.Map;
 
 public interface BoeriService {
-    List<ApiConfigEntity> findApiConfig(String id);
+    Map<String,Object> findApiConfig(String id);
 
 }

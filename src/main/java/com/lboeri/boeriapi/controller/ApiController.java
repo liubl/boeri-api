@@ -3,6 +3,7 @@ package com.lboeri.boeriapi.controller;
 import com.lboeri.boeriapi.dao.DatabaseContextHolder;
 import com.lboeri.boeriapi.dao.common.entity.ApiConfigEntity;
 import com.lboeri.boeriapi.dao.singleton.ApiConfigEntitySgMapper;
+import com.lboeri.boeriapi.service.BoeriService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -21,14 +22,17 @@ public class ApiController {
     @Autowired
     ApiConfigEntitySgMapper apiConfigEntitySgMapper;
 
-    @RequestMapping("/greeting")
-    public Map greeting(@RequestParam(value="name", defaultValue="World") String name) {
-        ApiConfigEntity entity = new ApiConfigEntity();
-        Map map = new HashMap();
-        entity.setApiname("getUserCityInfo");
-        //DatabaseContextHolder.setDataSourceType("289facb6f21546e287a369ebc2e958be");
-        List list = apiConfigEntitySgMapper.selectByEntity(entity);
-        map.put("obj",list);
-        return map;
+    @Autowired
+    BoeriService boeriServiceImp;
+    @RequestMapping("/api")
+    public Map boeriApi(@RequestParam(value="brname", defaultValue="getUserCityInfo") String brname) {
+
+//        ApiConfigEntity entity = new ApiConfigEntity();
+//        Map map = new HashMap();
+//        entity.setApiname("getUserCityInfo");
+//        //DatabaseContextHolder.setDataSourceType("289facb6f21546e287a369ebc2e958be");
+//        List list = apiConfigEntitySgMapper.selectByEntity(entity);
+//        map.put("obj",list);
+        return boeriServiceImp.findApiConfig(brname);
     }
 }

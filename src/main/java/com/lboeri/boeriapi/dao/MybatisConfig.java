@@ -93,7 +93,7 @@ public class MybatisConfig {
                 dataSourceclust.setDriverClassName(resultSet.getString("DRIVERCLASSNAME"));
                 dataSourceclust.setUsername(resultSet.getString("USERNAME"));
                 dataSourceclust.setPassword(resultSet.getString("PASSWORD"));
-                targetDataSources.put(resultSet.getString("ID"), dataSourceclust);
+                targetDataSources.put(resultSet.getString("DSID"), dataSourceclust);
             }
         } catch (SQLException e) {
             e.printStackTrace();

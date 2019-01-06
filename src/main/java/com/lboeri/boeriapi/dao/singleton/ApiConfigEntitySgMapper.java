@@ -15,7 +15,4 @@ public interface ApiConfigEntitySgMapper {
 
     List<ApiConfigEntity> selectByEntity(ApiConfigEntity record);
 
-    @Select("SELECT * FROM sys_dept")
-    List<Map<String,Object>> selectCity();
-
 }
