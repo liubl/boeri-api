@@ -15,7 +15,7 @@ import java.util.Map;
 import java.util.concurrent.atomic.AtomicLong;
 
 @RestController
-public class ApiController {
+public class BoeriApiController {
     private static final String template = "Hello, %s!";
     private final AtomicLong counter = new AtomicLong();
 

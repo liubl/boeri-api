@@ -3,7 +3,7 @@ package com.lboeri.boeriapi.service;
 import com.lboeri.boeriapi.dao.DatabaseContextHolder;
 import com.lboeri.boeriapi.dao.common.entity.ApiConfigEntity;
 import com.lboeri.boeriapi.dao.singleton.ApiConfigEntitySgMapper;
-import com.lboeri.boeriapi.dao.singleton.ApiMapper;
+import com.lboeri.boeriapi.dao.singleton.BoeriApiMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,14 +18,14 @@ public class BoeriServiceImpl implements BoeriService {
     ApiConfigEntitySgMapper configEntitySgMapper;
 
     @Autowired
-    ApiMapper apiMapper;
+    BoeriApiMapper apiMapper;
 
     @Override
     public Map<String,Object> findApiConfig(String id) {
         Map<String,Object> rsMap = new HashMap<String,Object>();
         ApiConfigEntity entity = new ApiConfigEntity();
         entity.setApiname(id);
-        DatabaseContextHolder.setDataSourceType("default");
+        DatabaseContextHolder.setDataSourceType(DatabaseContextHolder.DEFAULT);
         List<ApiConfigEntity> config = configEntitySgMapper.selectByEntity(entity);
         if (config != null && config.size() > 0){
             ApiConfigEntity rsConfig = config.get(0);

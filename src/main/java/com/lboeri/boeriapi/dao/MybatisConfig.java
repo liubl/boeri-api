@@ -43,11 +43,13 @@ public class MybatisConfig {
         dataSource.setDriverClassName(dataSourceProperties.getDriverClassName());
         dataSource.setUsername(dataSourceProperties.getUsername());
         dataSource.setPassword(dataSourceProperties.getPassword());
-        //默认数据源
-        dataSourceRouter.setDefaultTargetDataSource(dataSource);
-        targetDataSources.put("defualt", dataSource);
 
         try {
+
+            //默认数据源
+            dataSourceRouter.setDefaultTargetDataSource(dataSource);
+            targetDataSources.put(DatabaseContextHolder.DEFAULT, dataSource);
+
             StringBuffer sql = new StringBuffer("");
             sql.append(" SELECT id   as \"ID\" , ");
             sql.append("        dsid   as \"DSID\" , ");
@@ -85,7 +87,6 @@ public class MybatisConfig {
             // 执行
             resultSet = preparedStatement.executeQuery();
 
-
             // 将ResultSet的结果保存到Map中
             while (resultSet.next()) {
                 DruidDataSource dataSourceclust = new DruidDataSource();
@@ -97,8 +98,19 @@ public class MybatisConfig {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            try {
+                if (resultSet != null) {
+                    resultSet.close();
+                }
+                if (preparedStatement != null) {
+                    preparedStatement.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
-        //制定数据源
+            //制定数据源
         dataSourceRouter.setTargetDataSources(targetDataSources);
         return dataSourceRouter;
 

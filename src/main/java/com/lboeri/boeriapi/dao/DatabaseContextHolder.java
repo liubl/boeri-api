@@ -12,6 +12,11 @@ public class DatabaseContextHolder {
     private static final ThreadLocal<String> contextHolder = new ThreadLocal<String>();
 
     /**
+     * 默认数据库key
+     */
+    public static final String DEFAULT = "defualt";
+
+    /**
      * 使用setDataSourceType设置当前的
      *
      * @param dataSourceType

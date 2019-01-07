@@ -11,8 +11,8 @@ import java.util.List;
 import java.util.Map;
 
 @Mapper
-public interface  ApiMapper {
+public interface BoeriApiMapper {
 
     @Select("${querySql}")
-    List<Map> selectByEntity(Map<String,Object> pram);
+    List<Map> selectByEntity(Map<String,Object> param);
 }
