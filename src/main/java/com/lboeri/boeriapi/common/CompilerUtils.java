@@ -1,9 +1,8 @@
-// Decompiled by Jad v1.5.8g. Copyright 2001 Pavel Kouznetsov.
-package cn.com.easy.util;
+package com.lboeri.boeriapi.common;
 
-import cn.com.easy.exception.ParserException;
-import cn.com.easy.parser.Replacement;
-import java.io.PrintStream;
+import jdk.nashorn.internal.runtime.ParserException;
+import org.springframework.util.StringUtils;
+
 import java.util.Stack;
 
 public class CompilerUtils {
@@ -84,7 +83,7 @@ public class CompilerUtils {
 	}
 
 	public static String replaceBetween(String str, String open, String close, Replacement replacement)
-			throws ParserException {
+			throws Exception {
 		if (str == null || StringUtils.isEmpty(open) || StringUtils.isEmpty(close))
 			return null;
 		int strLen = str.length();
@@ -108,6 +107,7 @@ public class CompilerUtils {
 			sb.append(str.substring(pos, start - openLen));
 			String content = str.substring(start, end);
 			sb.append(replacement.parse(++index, start - openLen, end, content));
+			//sb.append(content);
 			pos = end + closeLen;
 		} while (true);
 		sb.append(str.substring(pos));
@@ -126,7 +126,7 @@ public class CompilerUtils {
 
 			});
 			System.out.println(ss);
-		} catch (ParserException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}

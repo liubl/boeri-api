@@ -1,26 +1,14 @@
 // Decompiled by Jad v1.5.8g. Copyright 2001 Pavel Kouznetsov.
-package cn.com.easy.util;
+package com.lboeri.boeriapi.common;
 
-import cn.com.easy.core.script.EasyScript;
-import cn.com.easy.core.script.EasyScriptContext;
-import cn.com.easy.exception.EasyException;
-import com.fasterxml.jackson.core.JsonParseException;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import java.io.IOException;
-import java.io.PrintStream;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
+import org.springframework.util.Assert;
+
+import java.util.*;
 
 public class StringUtils {
 
 	private static ObjectMapper mapper = new ObjectMapper();
-	private static final EasyScript escript = new EasyScript();
 	public static final String SPACE = " ";
 	public static final String EMPTY = "";
 	public static final int INDEX_NOT_FOUND = -1;
@@ -92,16 +80,16 @@ public class StringUtils {
 			return str;
 	}
 
-	public static transient String concat(String strs[]) {
-		StringBuffer sb = new StringBuffer();
-		if (strs != null) {
-			int i = 0;
-			for (int len = strs.length; i < len; i++)
-				sb.append(strs[i]);
-
-		}
-		return sb.toString();
-	}
+//	public static transient String concat(String strs[]) {
+//		StringBuffer sb = new StringBuffer();
+//		if (strs != null) {
+//			int i = 0;
+//			for (int len = strs.length; i < len; i++)
+//				sb.append(strs[i]);
+//
+//		}
+//		return sb.toString();
+//	}
 
 	public static String lpad(String str, int length, String padstr) {
 		if (str == null || length < 0)
@@ -196,30 +184,6 @@ public class StringUtils {
 			return str.substring(0, index);
 	}
 
-	public static Object parseJson(String json) throws EasyException {
-		try {
-			if (json.indexOf('[') == 0)
-				return mapper.readValue(json, java / util / List);
-		} catch (JsonParseException e) {
-			throw new EasyException(e.getMessage(), e);
-		} catch (JsonMappingException e) {
-			throw new EasyException(e.getMessage(), e);
-		} catch (IOException e) {
-			throw new EasyException(e.getMessage(), e);
-		}
-		if (json.indexOf('{') == 0)
-			return mapper.readValue(json, java / util / Map);
-		return null;
-	}
-
-	public static String toJson(Object obj) throws EasyException {
-		try {
-			return mapper.writeValueAsString(obj);
-		} catch (JsonProcessingException e) {
-			throw new EasyException(e.getMessage(), e);
-		}
-	}
-
 	public static String replace(String str, String substring, String replacement) {
 		return str.replace(substring, replacement);
 	}
@@ -233,17 +197,6 @@ public class StringUtils {
 		return (new StringBuilder()).append(uuidString.substring(0, 8)).append(uuidString.substring(9, 13))
 				.append(uuidString.substring(14, 18)).append(uuidString.substring(19, 23))
 				.append(uuidString.substring(24)).toString();
-	}
-
-	public static int numberOf(String str, String substring) {
-		int count = 0;
-		int index = 0;
-		int length = EasyUtils.length(substring);
-		while ((index = str.indexOf(substring, index)) != -1) {
-			index += length;
-			count++;
-		}
-		return count;
 	}
 
 	public static boolean isEmpty(CharSequence cs) {
@@ -269,31 +222,31 @@ public class StringUtils {
 		return !isBlank(cs);
 	}
 
-	public static transient boolean equals(String str, String equalsStrs[]) {
-		Assert.notNull(equalsStrs, "equalsStrs must not be null");
-		if (equalsStrs.length > 0) {
-			String arr$[] = equalsStrs;
-			int len$ = arr$.length;
-			for (int i$ = 0; i$ < len$; i$++) {
-				String equalsStr = arr$[i$];
-				if (equalsStr.equals(str))
-					return true;
-			}
-
-		}
-		return false;
-	}
+//	public static transient boolean equals(String str, String equalsStrs[]) {
+//		Assert.notNull(equalsStrs, "equalsStrs must not be null");
+//		if (equalsStrs.length > 0) {
+//			String arr$[] = equalsStrs;
+//			int len$ = arr$.length;
+//			for (int i$ = 0; i$ < len$; i$++) {
+//				String equalsStr = arr$[i$];
+//				if (equalsStr.equals(str))
+//					return true;
+//			}
+//
+//		}
+//		return false;
+//	}
 
 	public static String strip(String str, String stripChars) {
-		return org.apache.commons.lang.StringUtils.strip(str, stripChars);
+		return StringUtils.strip(str, stripChars);
 	}
 
 	public static String stripStart(String str, String stripChars) {
-		return org.apache.commons.lang.StringUtils.stripStart(str, stripChars);
+		return StringUtils.stripStart(str, stripChars);
 	}
 
 	public static String stripEnd(String str, String stripChars) {
-		return org.apache.commons.lang.StringUtils.stripEnd(str, stripChars);
+		return StringUtils.stripEnd(str, stripChars);
 	}
 
 	public static int indexOf(String str, String searchStr, String afterStr) {
@@ -319,23 +272,23 @@ public class StringUtils {
 	}
 
 	public static String substringBeforeLast(String str, String separator) {
-		return org.apache.commons.lang.StringUtils.substringBeforeLast(str, separator);
+		return StringUtils.substringBeforeLast(str, separator);
 	}
 
 	public static String substringAfterLast(String str, String separator) {
-		return org.apache.commons.lang.StringUtils.substringAfterLast(str, separator);
+		return StringUtils.substringAfterLast(str, separator);
 	}
 
 	public static String substringBetween(String str, String tag) {
-		return org.apache.commons.lang.StringUtils.substringBetween(str, tag);
+		return StringUtils.substringBetween(str, tag);
 	}
 
 	public static String substringBetween(String str, String open, String close) {
-		return org.apache.commons.lang.StringUtils.substringBetween(str, open, close);
+		return StringUtils.substringBetween(str, open, close);
 	}
 
 	public static String[] substringsBetween(String str, String open, String close) {
-		return org.apache.commons.lang.StringUtils.substringsBetween(str, open, close);
+		return StringUtils.substringsBetween(str, open, close);
 	}
 
 	public static String replaceBetween(String str, String open, String close, String replacement) {
@@ -374,7 +327,7 @@ public class StringUtils {
 		if (strLen == 0)
 			return str;
 		Assert.notNull(replacement, "replacement must not be null");
-		EasyScriptContext scriptContext = escript.getScriptContext(replacement);
+		//EasyScriptContext scriptContext = escript.getScriptContext(replacement);
 		int openLen = open.length();
 		int closeLen = close.length();
 		StringBuffer sb = new StringBuffer();
@@ -390,8 +343,8 @@ public class StringUtils {
 				break;
 			sb.append(str.substring(pos, start - openLen));
 			String exception = str.substring(start, end);
-			if (isNotBlank(exception))
-				sb.append(escript.evaluateScript(exception, scriptContext));
+//			if (isNotBlank(exception))
+//				sb.append(escript.evaluateScript(exception, scriptContext));
 		}
 
 		sb.append(str.substring(pos));
@@ -479,9 +432,10 @@ public class StringUtils {
 		map.put("pwd", "123pwd");
 		map.put("age", Integer.valueOf(25));
 		String strs = replaceBetween(a, "${", "}", map);
+		System.out.println(strs);
 		String sqlsta = "select user_no,area_no,city_no from user info where area_no=#area# %[and city_no=#age#}and acct_date=#pwd#}";
-		EasyScript escript = new EasyScript();
-		EasyScriptContext context = escript.getScriptContext(map);
+		//EasyScript escript = new EasyScript();
+		//EasyScriptContext context = escript.getScriptContext(map);
 		List conditionalExpressions = new ArrayList();
 		String sql = replaceAndsubstringsBetween(sqlsta, "#", "#", "$sqlConditionalExpression", conditionalExpressions);
 		String str;
