@@ -1,16 +1,12 @@
 package com.lboeri.boeriapi.controller;
 
-import com.lboeri.boeriapi.dao.DatabaseContextHolder;
-import com.lboeri.boeriapi.dao.common.entity.ApiConfigEntity;
-import com.lboeri.boeriapi.dao.singleton.ApiConfigEntitySgMapper;
+import com.lboeri.boeriapi.dao.singleton.ApiConfigSgMapper;
 import com.lboeri.boeriapi.service.BoeriService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicLong;
 
@@ -20,7 +16,7 @@ public class BoeriApiController {
     private final AtomicLong counter = new AtomicLong();
 
     @Autowired
-    ApiConfigEntitySgMapper apiConfigEntitySgMapper;
+    ApiConfigSgMapper apiConfigEntitySgMapper;
 
     @Autowired
     BoeriService boeriServiceImp;

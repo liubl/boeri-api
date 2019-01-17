@@ -1,8 +1,8 @@
-package com.lboeri.boeriapi.dao.common.entity;
+package com.lboeri.boeriapi.dao.generator.entity;
 
 import java.util.Date;
 
-public class ApiConfigEntity {
+public class ApiConfig {
     private String id;
 
     private String apiname;

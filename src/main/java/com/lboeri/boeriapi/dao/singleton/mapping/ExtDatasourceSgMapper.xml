@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lboeri.boeriapi.dao.singleton.ExtDatasourceSgMapper">
+  <resultMap id="BaseResultMap" type="com.lboeri.boeriapi.dao.generator.entity.ExtDatasource">
+    <id column="DS_NAME" jdbcType="VARCHAR" property="dsName" />
+    <result column="DS_CN_NAME" jdbcType="VARCHAR" property="dsCnName" />
+    <result column="DB_TYPE" jdbcType="VARCHAR" property="dbType" />
+    <result column="DS_TYPE" jdbcType="VARCHAR" property="dsType" />
+    <result column="DRIVER_CLASS_NAME" jdbcType="VARCHAR" property="driverClassName" />
+    <result column="DS_URL" jdbcType="VARCHAR" property="dsUrl" />
+    <result column="USER_NAME" jdbcType="VARCHAR" property="userName" />
+    <result column="USER_PASSWORD" jdbcType="VARCHAR" property="userPassword" />
+    <result column="INI_SIZE" jdbcType="VARCHAR" property="iniSize" />
+    <result column="MIN_IDLE" jdbcType="VARCHAR" property="minIdle" />
+    <result column="MAX_IDLE" jdbcType="VARCHAR" property="maxIdle" />
+    <result column="MAX_ACTIVE" jdbcType="VARCHAR" property="maxActive" />
+    <result column="MAX_WAIT" jdbcType="VARCHAR" property="maxWait" />
+    <result column="REMOVE_ABANDONED" jdbcType="VARCHAR" property="removeAbandoned" />
+    <result column="REMOVE_ABANDONED_TIMEOUT" jdbcType="VARCHAR" property="removeAbandonedTimeout" />
+    <result column="TIME_BWT_EVN_MILLIS" jdbcType="VARCHAR" property="timeBwtEvnMillis" />
+    <result column="TEST_WHILE_IDLE" jdbcType="VARCHAR" property="testWhileIdle" />
+    <result column="VALIDATION_QUERY" jdbcType="VARCHAR" property="validationQuery" />
+    <result column="DS_STATUS" jdbcType="VARCHAR" property="dsStatus" />
+    <result column="CREATE_TIME" jdbcType="VARCHAR" property="createTime" />
+    <result column="CREATE_USER" jdbcType="VARCHAR" property="createUser" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    DS_NAME, DS_CN_NAME, DB_TYPE, DS_TYPE, DRIVER_CLASS_NAME, DS_URL, USER_NAME, USER_PASSWORD, 
+    INI_SIZE, MIN_IDLE, MAX_IDLE, MAX_ACTIVE, MAX_WAIT, REMOVE_ABANDONED, REMOVE_ABANDONED_TIMEOUT, 
+    TIME_BWT_EVN_MILLIS, TEST_WHILE_IDLE, VALIDATION_QUERY, DS_STATUS, CREATE_TIME, CREATE_USER
+  </sql>
+  <select id="selectByEntity" parameterType="com.lboeri.boeriapi.dao.generator.entity.ExtDatasource" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from e_ext_datasource
+    <where>
+      <if test="dsName != null">
+        AND DS_NAME = #{dsName,jdbcType=VARCHAR}
+      </if>
+      <if test="dsCnName != null">
+        AND DS_CN_NAME = #{dsCnName,jdbcType=VARCHAR}
+      </if>
+      <if test="dbType != null">
+        AND DB_TYPE = #{dbType,jdbcType=VARCHAR}
+      </if>
+      <if test="dsType != null">
+        AND DS_TYPE = #{dsType,jdbcType=VARCHAR}
+      </if>
+      <if test="driverClassName != null">
+        AND DRIVER_CLASS_NAME = #{driverClassName,jdbcType=VARCHAR}
+      </if>
+      <if test="dsUrl != null">
+        AND DS_URL = #{dsUrl,jdbcType=VARCHAR}
+      </if>
+      <if test="userName != null">
+        AND USER_NAME = #{userName,jdbcType=VARCHAR}
+      </if>
+      <if test="userPassword != null">
+        AND USER_PASSWORD = #{userPassword,jdbcType=VARCHAR}
+      </if>
+      <if test="iniSize != null">
+        AND INI_SIZE = #{iniSize,jdbcType=VARCHAR}
+      </if>
+      <if test="minIdle != null">
+        AND MIN_IDLE = #{minIdle,jdbcType=VARCHAR}
+      </if>
+      <if test="maxIdle != null">
+        AND MAX_IDLE = #{maxIdle,jdbcType=VARCHAR}
+      </if>
+      <if test="maxActive != null">
+        AND MAX_ACTIVE = #{maxActive,jdbcType=VARCHAR}
+      </if>
+      <if test="maxWait != null">
+        AND MAX_WAIT = #{maxWait,jdbcType=VARCHAR}
+      </if>
+      <if test="removeAbandoned != null">
+        AND REMOVE_ABANDONED = #{removeAbandoned,jdbcType=VARCHAR}
+      </if>
+      <if test="removeAbandonedTimeout != null">
+        AND REMOVE_ABANDONED_TIMEOUT = #{removeAbandonedTimeout,jdbcType=VARCHAR}
+      </if>
+      <if test="timeBwtEvnMillis != null">
+        AND TIME_BWT_EVN_MILLIS = #{timeBwtEvnMillis,jdbcType=VARCHAR}
+      </if>
+      <if test="testWhileIdle != null">
+        AND TEST_WHILE_IDLE = #{testWhileIdle,jdbcType=VARCHAR}
+      </if>
+      <if test="validationQuery != null">
+        AND VALIDATION_QUERY = #{validationQuery,jdbcType=VARCHAR}
+      </if>
+      <if test="dsStatus != null">
+        AND DS_STATUS = #{dsStatus,jdbcType=VARCHAR}
+      </if>
+      <if test="createTime != null">
+        AND CREATE_TIME = #{createTime,jdbcType=VARCHAR}
+      </if>
+      <if test="createUser != null">
+        AND CREATE_USER = #{createUser,jdbcType=VARCHAR}
+      </if>
+    </where>
+  </select>
+  <delete id="deleteByEntity" parameterType="com.lboeri.boeriapi.dao.generator.entity.ExtDatasource">
+    delete from e_ext_datasource
+    <where>
+      <if test="dsName != null">
+        AND DS_NAME = #{dsName,jdbcType=VARCHAR}
+      </if>
+      <if test="dsCnName != null">
+        AND DS_CN_NAME = #{dsCnName,jdbcType=VARCHAR}
+      </if>
+      <if test="dbType != null">
+        AND DB_TYPE = #{dbType,jdbcType=VARCHAR}
+      </if>
+      <if test="dsType != null">
+        AND DS_TYPE = #{dsType,jdbcType=VARCHAR}
+      </if>
+      <if test="driverClassName != null">
+        AND DRIVER_CLASS_NAME = #{driverClassName,jdbcType=VARCHAR}
+      </if>
+      <if test="dsUrl != null">
+        AND DS_URL = #{dsUrl,jdbcType=VARCHAR}
+      </if>
+      <if test="userName != null">
+        AND USER_NAME = #{userName,jdbcType=VARCHAR}
+      </if>
+      <if test="userPassword != null">
+        AND USER_PASSWORD = #{userPassword,jdbcType=VARCHAR}
+      </if>
+      <if test="iniSize != null">
+        AND INI_SIZE = #{iniSize,jdbcType=VARCHAR}
+      </if>
+      <if test="minIdle != null">
+        AND MIN_IDLE = #{minIdle,jdbcType=VARCHAR}
+      </if>
+      <if test="maxIdle != null">
+        AND MAX_IDLE = #{maxIdle,jdbcType=VARCHAR}
+      </if>
+      <if test="maxActive != null">
+        AND MAX_ACTIVE = #{maxActive,jdbcType=VARCHAR}
+      </if>
+      <if test="maxWait != null">
+        AND MAX_WAIT = #{maxWait,jdbcType=VARCHAR}
+      </if>
+      <if test="removeAbandoned != null">
+        AND REMOVE_ABANDONED = #{removeAbandoned,jdbcType=VARCHAR}
+      </if>
+      <if test="removeAbandonedTimeout != null">
+        AND REMOVE_ABANDONED_TIMEOUT = #{removeAbandonedTimeout,jdbcType=VARCHAR}
+      </if>
+      <if test="timeBwtEvnMillis != null">
+        AND TIME_BWT_EVN_MILLIS = #{timeBwtEvnMillis,jdbcType=VARCHAR}
+      </if>
+      <if test="testWhileIdle != null">
+        AND TEST_WHILE_IDLE = #{testWhileIdle,jdbcType=VARCHAR}
+      </if>
+      <if test="validationQuery != null">
+        AND VALIDATION_QUERY = #{validationQuery,jdbcType=VARCHAR}
+      </if>
+      <if test="dsStatus != null">
+        AND DS_STATUS = #{dsStatus,jdbcType=VARCHAR}
+      </if>
+      <if test="createTime != null">
+        AND CREATE_TIME = #{createTime,jdbcType=VARCHAR}
+      </if>
+      <if test="createUser != null">
+        AND CREATE_USER = #{createUser,jdbcType=VARCHAR}
+      </if>
+    </where>
+  </delete>
+
+  <update id="updateByEntity" parameterType="com.lboeri.boeriapi.dao.generator.entity.ExtDatasource">
+    update e_ext_datasource
+    <set>
+      <if test="dsCnName != null">
+        DS_CN_NAME = #{dsCnName,jdbcType=VARCHAR},
+      </if>
+      <if test="dbType != null">
+        DB_TYPE = #{dbType,jdbcType=VARCHAR},
+      </if>
+      <if test="dsType != null">
+        DS_TYPE = #{dsType,jdbcType=VARCHAR},
+      </if>
+      <if test="driverClassName != null">
+        DRIVER_CLASS_NAME = #{driverClassName,jdbcType=VARCHAR},
+      </if>
+      <if test="dsUrl != null">
+        DS_URL = #{dsUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null">
+        USER_NAME = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="userPassword != null">
+        USER_PASSWORD = #{userPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="iniSize != null">
+        INI_SIZE = #{iniSize,jdbcType=VARCHAR},
+      </if>
+      <if test="minIdle != null">
+        MIN_IDLE = #{minIdle,jdbcType=VARCHAR},
+      </if>
+      <if test="maxIdle != null">
+        MAX_IDLE = #{maxIdle,jdbcType=VARCHAR},
+      </if>
+      <if test="maxActive != null">
+        MAX_ACTIVE = #{maxActive,jdbcType=VARCHAR},
+      </if>
+      <if test="maxWait != null">
+        MAX_WAIT = #{maxWait,jdbcType=VARCHAR},
+      </if>
+      <if test="removeAbandoned != null">
+        REMOVE_ABANDONED = #{removeAbandoned,jdbcType=VARCHAR},
+      </if>
+      <if test="removeAbandonedTimeout != null">
+        REMOVE_ABANDONED_TIMEOUT = #{removeAbandonedTimeout,jdbcType=VARCHAR},
+      </if>
+      <if test="timeBwtEvnMillis != null">
+        TIME_BWT_EVN_MILLIS = #{timeBwtEvnMillis,jdbcType=VARCHAR},
+      </if>
+      <if test="testWhileIdle != null">
+        TEST_WHILE_IDLE = #{testWhileIdle,jdbcType=VARCHAR},
+      </if>
+      <if test="validationQuery != null">
+        VALIDATION_QUERY = #{validationQuery,jdbcType=VARCHAR},
+      </if>
+      <if test="dsStatus != null">
+        DS_STATUS = #{dsStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="createUser != null">
+        CREATE_USER = #{createUser,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <where>
+      <if test="dsName != null">
+        AND DS_NAME = #{dsName,jdbcType=VARCHAR}
+      </if>
+      <if test="dsCnName != null">
+        AND DS_CN_NAME = #{dsCnName,jdbcType=VARCHAR}
+      </if>
+      <if test="dbType != null">
+        AND DB_TYPE = #{dbType,jdbcType=VARCHAR}
+      </if>
+      <if test="dsType != null">
+        AND DS_TYPE = #{dsType,jdbcType=VARCHAR}
+      </if>
+      <if test="driverClassName != null">
+        AND DRIVER_CLASS_NAME = #{driverClassName,jdbcType=VARCHAR}
+      </if>
+      <if test="dsUrl != null">
+        AND DS_URL = #{dsUrl,jdbcType=VARCHAR}
+      </if>
+      <if test="userName != null">
+        AND USER_NAME = #{userName,jdbcType=VARCHAR}
+      </if>
+      <if test="userPassword != null">
+        AND USER_PASSWORD = #{userPassword,jdbcType=VARCHAR}
+      </if>
+      <if test="iniSize != null">
+        AND INI_SIZE = #{iniSize,jdbcType=VARCHAR}
+      </if>
+      <if test="minIdle != null">
+        AND MIN_IDLE = #{minIdle,jdbcType=VARCHAR}
+      </if>
+      <if test="maxIdle != null">
+        AND MAX_IDLE = #{maxIdle,jdbcType=VARCHAR}
+      </if>
+      <if test="maxActive != null">
+        AND MAX_ACTIVE = #{maxActive,jdbcType=VARCHAR}
+      </if>
+      <if test="maxWait != null">
+        AND MAX_WAIT = #{maxWait,jdbcType=VARCHAR}
+      </if>
+      <if test="removeAbandoned != null">
+        AND REMOVE_ABANDONED = #{removeAbandoned,jdbcType=VARCHAR}
+      </if>
+      <if test="removeAbandonedTimeout != null">
+        AND REMOVE_ABANDONED_TIMEOUT = #{removeAbandonedTimeout,jdbcType=VARCHAR}
+      </if>
+      <if test="timeBwtEvnMillis != null">
+        AND TIME_BWT_EVN_MILLIS = #{timeBwtEvnMillis,jdbcType=VARCHAR}
+      </if>
+      <if test="testWhileIdle != null">
+        AND TEST_WHILE_IDLE = #{testWhileIdle,jdbcType=VARCHAR}
+      </if>
+      <if test="validationQuery != null">
+        AND VALIDATION_QUERY = #{validationQuery,jdbcType=VARCHAR}
+      </if>
+      <if test="dsStatus != null">
+        AND DS_STATUS = #{dsStatus,jdbcType=VARCHAR}
+      </if>
+      <if test="createTime != null">
+        AND CREATE_TIME = #{createTime,jdbcType=VARCHAR}
+      </if>
+      <if test="createUser != null">
+        AND CREATE_USER = #{createUser,jdbcType=VARCHAR}
+      </if>
+    </where>
+  </update>
+</mapper>

@@ -77,6 +77,7 @@ public class Replacement {
     }
 
     public static String buildSql(String xml, Map<String, Object> hm) throws JDOMException, IOException {
+        xml = "<sql><select>" + xml + "</select></sql>";
         SAXBuilder jdomBuilder = new SAXBuilder();
         Document jdomDocument = jdomBuilder.build(new StringReader(xml));
         System.out.println(jdomDocument.getRootElement().getName());
@@ -104,7 +105,6 @@ public class Replacement {
             if("if".equals(el.getName())){
                 String test = el.getAttributeValue("test");
                 System.out.println("test="+test);
-
                 if(!evaluator.evaluateBoolean(test, hm)){
                     continue;
                 }

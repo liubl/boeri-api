@@ -1,10 +1,6 @@
 package com.lboeri.boeriapi.dao.singleton;
 
-import com.lboeri.boeriapi.dao.SimpleSelectLangDriver;
-import com.lboeri.boeriapi.dao.common.entity.ApiSourceEntity;
-import org.apache.ibatis.annotations.Lang;
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
