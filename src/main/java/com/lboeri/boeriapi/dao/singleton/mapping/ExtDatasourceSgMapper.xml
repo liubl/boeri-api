@@ -35,7 +35,7 @@
     from e_ext_datasource
     <where>
       <if test="dsName != null">
-        AND DS_NAME = #{dsName,jdbcType=VARCHAR}
+        DS_NAME = #{dsName,jdbcType=VARCHAR}
       </if>
       <if test="dsCnName != null">
         AND DS_CN_NAME = #{dsCnName,jdbcType=VARCHAR}
@@ -103,7 +103,7 @@
     delete from e_ext_datasource
     <where>
       <if test="dsName != null">
-        AND DS_NAME = #{dsName,jdbcType=VARCHAR}
+        DS_NAME = #{dsName,jdbcType=VARCHAR}
       </if>
       <if test="dsCnName != null">
         AND DS_CN_NAME = #{dsCnName,jdbcType=VARCHAR}
@@ -234,7 +234,7 @@
     </set>
     <where>
       <if test="dsName != null">
-        AND DS_NAME = #{dsName,jdbcType=VARCHAR}
+        DS_NAME = #{dsName,jdbcType=VARCHAR}
       </if>
       <if test="dsCnName != null">
         AND DS_CN_NAME = #{dsCnName,jdbcType=VARCHAR}

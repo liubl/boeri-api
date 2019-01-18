@@ -1,7 +1,11 @@
 package com.lboeri.boeriapi.dao;
 
 import com.alibaba.druid.pool.DruidDataSource;
+import com.lboeri.boeriapi.dao.generator.entity.ApiConfig;
+import com.lboeri.boeriapi.dao.singleton.ApiConfigSgMapper;
+import com.lboeri.boeriapi.util.Replacement;
 import org.apache.ibatis.session.SqlSessionFactory;
+import org.jdom2.JDOMException;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceProperties;
@@ -9,11 +13,14 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
+import org.springframework.stereotype.Service;
 
+import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Configuration
@@ -121,4 +128,6 @@ public class MybatisConfig {
      public DataSourceTransactionManager transactionManager(DataSourceRouter dataSource) throws Exception {
                  return new DataSourceTransactionManager(dataSource);
      }
+
+
 }
