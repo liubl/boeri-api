@@ -11,7 +11,6 @@ import java.util.Map;
 @Mapper
 public interface BoeriApiMapper {
 
-    //@Select("${querySql}")
     @SelectProvider(type = PrivilegeProvider.class, method = "querySql")
     List<LinkedHashMap> selectByEntity(Map<String,Object> param);
 }

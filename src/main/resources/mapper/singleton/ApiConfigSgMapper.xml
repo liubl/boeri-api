@@ -2,133 +2,133 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.lboeri.boeriapi.dao.singleton.ApiConfigSgMapper">
   <resultMap id="BaseResultMap" type="com.lboeri.boeriapi.dao.generator.entity.ApiConfig">
-    <id column="id" jdbcType="VARCHAR" property="id" />
-    <result column="apiname" jdbcType="VARCHAR" property="apiname" />
-    <result column="apiip" jdbcType="VARCHAR" property="apiip" />
-    <result column="apiport" jdbcType="VARCHAR" property="apiport" />
-    <result column="apipath" jdbcType="VARCHAR" property="apipath" />
-    <result column="queryparams" jdbcType="VARCHAR" property="queryparams" />
-    <result column="sqlparams" jdbcType="VARCHAR" property="sqlparams" />
-    <result column="dsid" jdbcType="INTEGER" property="dsid" />
-    <result column="publish_flag" jdbcType="CHAR" property="publishFlag" />
-    <result column="create_by" jdbcType="VARCHAR" property="createBy" />
-    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
-    <result column="update_by" jdbcType="VARCHAR" property="updateBy" />
-    <result column="update_date" jdbcType="TIMESTAMP" property="updateDate" />
-    <result column="remarks" jdbcType="VARCHAR" property="remarks" />
-    <result column="del_flag" jdbcType="CHAR" property="delFlag" />
+    <id column="API_ID" jdbcType="VARCHAR" property="apiId" />
+    <result column="API_NAME" jdbcType="VARCHAR" property="apiName" />
+    <result column="API_IP" jdbcType="VARCHAR" property="apiIp" />
+    <result column="API_PORT" jdbcType="VARCHAR" property="apiPort" />
+    <result column="API_PARH" jdbcType="VARCHAR" property="apiParh" />
+    <result column="QUERY_PARAMS" jdbcType="VARCHAR" property="queryParams" />
+    <result column="SQL_PARAMS" jdbcType="VARCHAR" property="sqlParams" />
+    <result column="DS_NAME" jdbcType="VARCHAR" property="dsName" />
+    <result column="PUBLISH_FLAG" jdbcType="CHAR" property="publishFlag" />
+    <result column="CREATE_USER" jdbcType="VARCHAR" property="createUser" />
+    <result column="CREATE_DATE" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="UPDATE_USER" jdbcType="VARCHAR" property="updateUser" />
+    <result column="UPDATE_DATE" jdbcType="TIMESTAMP" property="updateDate" />
+    <result column="REMARK" jdbcType="VARCHAR" property="remark" />
+    <result column="API_STATUS" jdbcType="CHAR" property="apiStatus" />
   </resultMap>
   <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.lboeri.boeriapi.dao.generator.entity.ApiConfig">
-    <result column="query_sql" jdbcType="LONGVARCHAR" property="querySql" />
+    <result column="EXC_SQL" jdbcType="LONGVARCHAR" property="excSql" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, apiname, apiip, apiport, apipath, queryparams, sqlparams, dsid, publish_flag, 
-    create_by, create_date, update_by, update_date, remarks, del_flag
+    API_ID, API_NAME, API_IP, API_PORT, API_PARH, QUERY_PARAMS, SQL_PARAMS, DS_NAME,
+    PUBLISH_FLAG, CREATE_USER, CREATE_DATE, UPDATE_USER, UPDATE_DATE, REMARK, API_STATUS
   </sql>
   <sql id="Blob_Column_List">
-    query_sql
+    EXC_SQL
   </sql>
   <select id="selectByEntity" parameterType="com.lboeri.boeriapi.dao.generator.entity.ApiConfig" resultMap="ResultMapWithBLOBs">
-    select 
+    select
     <include refid="Base_Column_List" />
     ,
     <include refid="Blob_Column_List" />
     from e_api_config
     <where>
-      <if test="apiname != null">
-        apiname = #{apiname,jdbcType=VARCHAR}
+      <if test="apiName != null">
+        API_NAME = #{apiName,jdbcType=VARCHAR}
       </if>
-      <if test="apiip != null">
-        AND apiip = #{apiip,jdbcType=VARCHAR}
+      <if test="apiIp != null">
+        AND API_IP = #{apiIp,jdbcType=VARCHAR}
       </if>
-      <if test="apiport != null">
-        AND apiport = #{apiport,jdbcType=VARCHAR}
+      <if test="apiPort != null">
+        AND API_PORT = #{apiPort,jdbcType=VARCHAR}
       </if>
-      <if test="apipath != null">
-        AND apipath = #{apipath,jdbcType=VARCHAR}
+      <if test="apiParh != null">
+        AND API_PARH = #{apiParh,jdbcType=VARCHAR}
       </if>
-      <if test="queryparams != null">
-        AND queryparams = #{queryparams,jdbcType=VARCHAR}
+      <if test="queryParams != null">
+        AND QUERY_PARAMS = #{queryParams,jdbcType=VARCHAR}
       </if>
-      <if test="sqlparams != null">
-        AND sqlparams = #{sqlparams,jdbcType=VARCHAR}
+      <if test="sqlParams != null">
+        AND SQL_PARAMS = #{sqlParams,jdbcType=VARCHAR}
       </if>
-      <if test="dsid != null">
-        AND dsid = #{dsid,jdbcType=INTEGER}
+      <if test="dsName != null">
+        AND DS_NAME = #{dsName,jdbcType=VARCHAR}
       </if>
       <if test="publishFlag != null">
-        AND publish_flag = #{publishFlag,jdbcType=CHAR}
+        AND PUBLISH_FLAG = #{publishFlag,jdbcType=CHAR}
       </if>
-      <if test="createBy != null">
-        AND create_by = #{createBy,jdbcType=VARCHAR}
+      <if test="createUser != null">
+        AND CREATE_USER = #{createUser,jdbcType=VARCHAR}
       </if>
       <if test="createDate != null">
-        AND create_date = #{createDate,jdbcType=TIMESTAMP}
+        AND CREATE_DATE = #{createDate,jdbcType=TIMESTAMP}
       </if>
-      <if test="updateBy != null">
-        AND update_by = #{updateBy,jdbcType=VARCHAR}
+      <if test="updateUser != null">
+        AND UPDATE_USER = #{updateUser,jdbcType=VARCHAR}
       </if>
       <if test="updateDate != null">
-        AND update_date = #{updateDate,jdbcType=TIMESTAMP}
+        AND UPDATE_DATE = #{updateDate,jdbcType=TIMESTAMP}
       </if>
-      <if test="remarks != null">
-        AND remarks = #{remarks,jdbcType=VARCHAR}
+      <if test="remark != null">
+        AND REMARK = #{remark,jdbcType=VARCHAR}
       </if>
-      <if test="delFlag != null">
-        AND del_flag = #{delFlag,jdbcType=CHAR}
+      <if test="apiStatus != null">
+        AND API_STATUS = #{apiStatus,jdbcType=CHAR}
       </if>
-      <if test="querySql != null">
-        AND query_sql = #{querySql,jdbcType=LONGVARCHAR}
+      <if test="excSql != null">
+        AND EXC_SQL = #{excSql,jdbcType=LONGVARCHAR}
       </if>
     </where>
   </select>
   <delete id="deleteByEntity" parameterType="com.lboeri.boeriapi.dao.generator.entity.ApiConfig">
     delete from e_api_config
     <where>
-      <if test="apiname != null">
-        apiname = #{apiname,jdbcType=VARCHAR}
+      <if test="apiName != null">
+        API_NAME = #{apiName,jdbcType=VARCHAR}
       </if>
-      <if test="apiip != null">
-        AND apiip = #{apiip,jdbcType=VARCHAR}
+      <if test="apiIp != null">
+        AND API_IP = #{apiIp,jdbcType=VARCHAR}
       </if>
-      <if test="apiport != null">
-        AND apiport = #{apiport,jdbcType=VARCHAR}
+      <if test="apiPort != null">
+        AND API_PORT = #{apiPort,jdbcType=VARCHAR}
       </if>
-      <if test="apipath != null">
-        AND apipath = #{apipath,jdbcType=VARCHAR}
+      <if test="apiParh != null">
+        AND API_PARH = #{apiParh,jdbcType=VARCHAR}
       </if>
-      <if test="queryparams != null">
-        AND queryparams = #{queryparams,jdbcType=VARCHAR}
+      <if test="queryParams != null">
+        AND QUERY_PARAMS = #{queryParams,jdbcType=VARCHAR}
       </if>
-      <if test="sqlparams != null">
-        AND sqlparams = #{sqlparams,jdbcType=VARCHAR}
+      <if test="sqlParams != null">
+        AND SQL_PARAMS = #{sqlParams,jdbcType=VARCHAR}
       </if>
-      <if test="dsid != null">
-        AND dsid = #{dsid,jdbcType=INTEGER}
+      <if test="dsName != null">
+        AND DS_NAME = #{dsName,jdbcType=VARCHAR}
       </if>
       <if test="publishFlag != null">
-        AND publish_flag = #{publishFlag,jdbcType=CHAR}
+        AND PUBLISH_FLAG = #{publishFlag,jdbcType=CHAR}
       </if>
-      <if test="createBy != null">
-        AND create_by = #{createBy,jdbcType=VARCHAR}
+      <if test="createUser != null">
+        AND CREATE_USER = #{createUser,jdbcType=VARCHAR}
       </if>
       <if test="createDate != null">
-        AND create_date = #{createDate,jdbcType=TIMESTAMP}
+        AND CREATE_DATE = #{createDate,jdbcType=TIMESTAMP}
       </if>
-      <if test="updateBy != null">
-        AND update_by = #{updateBy,jdbcType=VARCHAR}
+      <if test="updateUser != null">
+        AND UPDATE_USER = #{updateUser,jdbcType=VARCHAR}
       </if>
       <if test="updateDate != null">
-        AND update_date = #{updateDate,jdbcType=TIMESTAMP}
+        AND UPDATE_DATE = #{updateDate,jdbcType=TIMESTAMP}
       </if>
-      <if test="remarks != null">
-        AND remarks = #{remarks,jdbcType=VARCHAR}
+      <if test="remark != null">
+        AND REMARK = #{remark,jdbcType=VARCHAR}
       </if>
-      <if test="delFlag != null">
-        AND del_flag = #{delFlag,jdbcType=CHAR}
+      <if test="apiStatus != null">
+        AND API_STATUS = #{apiStatus,jdbcType=CHAR}
       </if>
-      <if test="querySql != null">
-        AND query_sql = #{querySql,jdbcType=LONGVARCHAR}
+      <if test="excSql != null">
+        AND EXC_SQL = #{excSql,jdbcType=LONGVARCHAR}
       </if>
     </where>
   </delete>

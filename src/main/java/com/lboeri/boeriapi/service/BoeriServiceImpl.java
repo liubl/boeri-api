@@ -26,25 +26,6 @@ public class BoeriServiceImpl implements BoeriService {
     @Override
     public Map<String,Object> findApiConfig(String id) {
         Map<String,Object> rsMap = new HashMap<String,Object>();
-        ApiConfig entity = new ApiConfig();
-        entity.setApiname(id);
-        DatabaseContextHolder.setDataSourceType(DatabaseContextHolder.DEFAULT);
-        List<ApiConfig> config = configEntitySgMapper.selectByEntity(entity);
-        if (config != null && config.size() > 0){
-            ApiConfig rsConfig = config.get(0);
-            DatabaseContextHolder.setDataSourceType(rsConfig.getDsid().toString());
-            Map<String,Object> pram = new HashMap<>();
-            pram.put("parent_code","240");
-            try {
-                pram.put("querySql", Replacement.buildSql(rsConfig.getQuerySql(),pram));
-            } catch (JDOMException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-            rsMap.put("obj",apiMapper.selectByEntity(pram));
-        }
 
         return rsMap;
     }

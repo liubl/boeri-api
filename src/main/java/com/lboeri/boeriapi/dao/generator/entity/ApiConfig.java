@@ -3,100 +3,100 @@ package com.lboeri.boeriapi.dao.generator.entity;
 import java.util.Date;
 
 public class ApiConfig {
-    private String id;
+    private String apiId;
 
-    private String apiname;
+    private String apiName;
 
-    private String apiip;
+    private String apiIp;
 
-    private String apiport;
+    private String apiPort;
 
-    private String apipath;
+    private String apiParh;
 
-    private String queryparams;
+    private String queryParams;
 
-    private String sqlparams;
+    private String sqlParams;
 
-    private Integer dsid;
+    private String dsName;
 
     private String publishFlag;
 
-    private String createBy;
+    private String createUser;
 
     private Date createDate;
 
-    private String updateBy;
+    private String updateUser;
 
     private Date updateDate;
 
-    private String remarks;
+    private String remark;
 
-    private String delFlag;
+    private String apiStatus;
 
-    private String querySql;
+    private String excSql;
 
-    public String getId() {
-        return id;
+    public String getApiId() {
+        return apiId;
     }
 
-    public void setId(String id) {
-        this.id = id == null ? null : id.trim();
+    public void setApiId(String apiId) {
+        this.apiId = apiId == null ? null : apiId.trim();
     }
 
-    public String getApiname() {
-        return apiname;
+    public String getApiName() {
+        return apiName;
     }
 
-    public void setApiname(String apiname) {
-        this.apiname = apiname == null ? null : apiname.trim();
+    public void setApiName(String apiName) {
+        this.apiName = apiName == null ? null : apiName.trim();
     }
 
-    public String getApiip() {
-        return apiip;
+    public String getApiIp() {
+        return apiIp;
     }
 
-    public void setApiip(String apiip) {
-        this.apiip = apiip == null ? null : apiip.trim();
+    public void setApiIp(String apiIp) {
+        this.apiIp = apiIp == null ? null : apiIp.trim();
     }
 
-    public String getApiport() {
-        return apiport;
+    public String getApiPort() {
+        return apiPort;
     }
 
-    public void setApiport(String apiport) {
-        this.apiport = apiport == null ? null : apiport.trim();
+    public void setApiPort(String apiPort) {
+        this.apiPort = apiPort == null ? null : apiPort.trim();
     }
 
-    public String getApipath() {
-        return apipath;
+    public String getApiParh() {
+        return apiParh;
     }
 
-    public void setApipath(String apipath) {
-        this.apipath = apipath == null ? null : apipath.trim();
+    public void setApiParh(String apiParh) {
+        this.apiParh = apiParh == null ? null : apiParh.trim();
     }
 
-    public String getQueryparams() {
-        return queryparams;
+    public String getQueryParams() {
+        return queryParams;
     }
 
-    public void setQueryparams(String queryparams) {
-        this.queryparams = queryparams == null ? null : queryparams.trim();
+    public void setQueryParams(String queryParams) {
+        this.queryParams = queryParams == null ? null : queryParams.trim();
     }
 
-    public String getSqlparams() {
-        return sqlparams;
+    public String getSqlParams() {
+        return sqlParams;
     }
 
-    public void setSqlparams(String sqlparams) {
-        this.sqlparams = sqlparams == null ? null : sqlparams.trim();
+    public void setSqlParams(String sqlParams) {
+        this.sqlParams = sqlParams == null ? null : sqlParams.trim();
     }
 
-    public Integer getDsid() {
-        return dsid;
+    public String getDsName() {
+        return dsName;
     }
 
-    public void setDsid(Integer dsid) {
-        this.dsid = dsid;
+    public void setDsName(String dsName) {
+        this.dsName = dsName == null ? null : dsName.trim();
     }
 
     public String getPublishFlag() {
@@ -107,12 +107,12 @@ public class ApiConfig {
         this.publishFlag = publishFlag == null ? null : publishFlag.trim();
     }
 
-    public String getCreateBy() {
-        return createBy;
+    public String getCreateUser() {
+        return createUser;
     }
 
-    public void setCreateBy(String createBy) {
-        this.createBy = createBy == null ? null : createBy.trim();
+    public void setCreateUser(String createUser) {
+        this.createUser = createUser == null ? null : createUser.trim();
     }
 
     public Date getCreateDate() {
@@ -123,12 +123,12 @@ public class ApiConfig {
         this.createDate = createDate;
     }
 
-    public String getUpdateBy() {
-        return updateBy;
+    public String getUpdateUser() {
+        return updateUser;
     }
 
-    public void setUpdateBy(String updateBy) {
-        this.updateBy = updateBy == null ? null : updateBy.trim();
+    public void setUpdateUser(String updateUser) {
+        this.updateUser = updateUser == null ? null : updateUser.trim();
     }
 
     public Date getUpdateDate() {
@@ -139,27 +139,27 @@ public class ApiConfig {
         this.updateDate = updateDate;
     }
 
-    public String getRemarks() {
-        return remarks;
+    public String getRemark() {
+        return remark;
     }
 
-    public void setRemarks(String remarks) {
-        this.remarks = remarks == null ? null : remarks.trim();
+    public void setRemark(String remark) {
+        this.remark = remark == null ? null : remark.trim();
     }
 
-    public String getDelFlag() {
-        return delFlag;
+    public String getApiStatus() {
+        return apiStatus;
     }
 
-    public void setDelFlag(String delFlag) {
-        this.delFlag = delFlag == null ? null : delFlag.trim();
+    public void setApiStatus(String apiStatus) {
+        this.apiStatus = apiStatus == null ? null : apiStatus.trim();
     }
 
-    public String getQuerySql() {
-        return querySql;
+    public String getExcSql() {
+        return excSql;
     }
 
-    public void setQuerySql(String querySql) {
-        this.querySql = querySql == null ? null : querySql.trim();
+    public void setExcSql(String excSql) {
+        this.excSql = excSql == null ? null : excSql.trim();
     }
 }
