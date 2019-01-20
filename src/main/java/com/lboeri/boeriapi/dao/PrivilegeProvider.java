@@ -32,7 +32,6 @@ public  class PrivilegeProvider {
         String sql = "";
 
         ApiConfig entity = new ApiConfig();
-        System.out.println(param.get("APINAME")+"");
 
         DatabaseContextHolder.setDataSourceType(DatabaseContextHolder.DEFAULT);
         entity.setApiName(param.get(BoeriApiController.APINAME)+"");
