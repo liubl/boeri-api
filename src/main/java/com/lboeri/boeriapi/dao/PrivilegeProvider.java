@@ -6,7 +6,6 @@ import com.lboeri.boeriapi.dao.singleton.ApiConfigSgMapper;
 import com.lboeri.boeriapi.util.Replacement;
 import org.jdom2.JDOMException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
@@ -15,7 +14,6 @@ import java.util.List;
 import java.util.Map;
 
 @Component
-@Configurable
 public  class PrivilegeProvider {
     @Autowired
     ApiConfigSgMapper apiConfigSgMapper;
@@ -27,10 +25,34 @@ public  class PrivilegeProvider {
         privilegeProvider = this;
         privilegeProvider.apiConfigSgMapper = this.apiConfigSgMapper;
     }
+
     public String querySql(Map<String,Object> param){
 
-        String sql = "";
+        String sql = buildSql("select", param);
+        return sql;
+    }
 
+    public String modSql(Map<String,Object> param){
+
+        String sql = buildSql("update", param);
+        return sql;
+    }
+
+    public String addSql(Map<String,Object> param){
+
+        String sql = buildSql("insert", param);
+        return sql;
+    }
+
+    public String delSql(Map<String,Object> param){
+
+        String sql = buildSql("delete", param);
+        return sql;
+    }
+
+    private String buildSql(String type, Map<String,Object> param){
+
+        String sql = "";
         ApiConfig entity = new ApiConfig();
 
         DatabaseContextHolder.setDataSourceType(DatabaseContextHolder.DEFAULT);
@@ -40,7 +62,7 @@ public  class PrivilegeProvider {
             ApiConfig rsConfig = config.get(0);
             DatabaseContextHolder.setDataSourceType(rsConfig.getDsName());
             try {
-                return Replacement.buildSql(rsConfig.getExcSql(), param);
+                return Replacement.buildSql(type,rsConfig.getExcSql(), param);
             } catch (JDOMException e) {
                 e.printStackTrace();
             } catch (IOException e) {

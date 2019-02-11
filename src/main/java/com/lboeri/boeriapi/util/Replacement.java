@@ -8,7 +8,6 @@ import org.jdom2.input.SAXBuilder;
 
 import java.io.IOException;
 import java.io.StringReader;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -16,64 +15,25 @@ import java.util.Map;
 public class Replacement {
     private static ExpressionEvaluator evaluator = new ExpressionEvaluator();
 
-    public static void main(String[] args) throws JDOMException, IOException {
-        Map<String, Object> hm = new HashMap<>();
-//        hm.put("name","aaaa");
-        hm.put("gb", "gebian");
-        hm.put("sfz", "sfz");
-        hm.put("sex", 1);
-        hm.put("birth", 2);
+    public static String buildSql(String type,String xml, Map<String, Object> hm) throws JDOMException, IOException {
+        xml = "<sql><"+type+">" + xml + "</"+type+"></sql>";
+        SAXBuilder jdomBuilder = new SAXBuilder();
+        Document jdomDocument = jdomBuilder.build(new StringReader(xml));
+        System.out.println(jdomDocument.getRootElement().getName());
+        if(!"sql".equals(jdomDocument.getRootElement().getName())){
+            System.out.println("非法的xml");
+            return null;
+        }
 
+        String sql;
+        Element select = jdomDocument.getRootElement();
 
-//        String xml = "<sql>" +
-//                " <if test=\"gb == null \">" +
-//                "    <select>" +
-//                "       select a, b, c" +
-//                "         from ac01_1" +
-//                "        where aac002 = #{sfz}" +
-//                "      <if test=\"name != null and name != ''\">" +
-//                "         and aac003 = #{name}" +
-//                "      </if>" +
-//                "    </select>" +
-//                " </if>" +
-//                " <if test=\"gb != null \">" +
-//                "    <if test=\"name != null\">" +
-//                "       <select>" +
-//                "          select a, b, c" +
-//                "            from ac01_2" +
-//                "           where aac001 = #{gb}" +
-//                "             and aac003 = #{name}" +
-//                "           <if test=\"sex == 1 or birth == 2\">" +
-//                "             and aac004 = #{sex}" +
-//                "           </if>" +
-//                "       </select>" +
-//                "    </if>" +
-//                "    <if test=\"name == null\">" +
-//                "       <select>" +
-//                "           select a, b, c" +
-//                "             from ac01_3" +
-//                "            where aac001 = #{gb}" +
-//                "           <if test=\"sex == 2 or birth == 1\">" +
-//                "              and aac004 = #{sex}" +
-//                "           </if>" +
-//                "       </select>" +
-//                "    </if>" +
-//                " </if>" +
-//                "</sql>";
-        String xml = "<sql>" +
-                " <update>update TBL_API_CONFIG " +
+        sql = analyseEl(select.getChildren(), hm);
+        if(null != sql && !"".equals(sql)){
+            return sql;
+        }
 
-                "       <if test=\"sex == 2 or birth == 1\">" +
-                "        apiname = #{apiname,jdbcType=VARCHAR}, " +
-                "      </if> "+
-                "apiip = #{apiip,jdbcType=VARCHAR},  "+
-                "           where id = #{id,jdbcType=VARCHAR} " +
-                "</update></sql>";
-        Replacement to = new Replacement();
-        String sql = to.buildSql(xml, hm);
-
-        System.out.println("----- done. --------");
-        System.out.println("取得的sql="+sql);
+        return null;
     }
 
     public static String buildSql(String xml, Map<String, Object> hm) throws JDOMException, IOException {
@@ -116,7 +76,7 @@ public class Replacement {
                     return sql;
                 }
 
-            }else if("select".equals(el.getName())||"update".equals(el.getName())){
+            }else if("select".equals(el.getName())||"update".equals(el.getName())||"insert".equals(el.getName())||"delete".equals(el.getName())){
                 List<Element> list = el.getChildren();
                 for (Iterator<Element> iter2 = list.iterator(); iter2.hasNext();){
                     el2 = iter2.next();
