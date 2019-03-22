@@ -86,6 +86,20 @@ public class MybatisConfig {
                 dataSourceclust.setDriverClassName(resultSet.getString("DRIVER_CLASS_NAME"));
                 dataSourceclust.setUsername(resultSet.getString("USER_NAME"));
                 dataSourceclust.setPassword(resultSet.getString("USER_PASSWORD"));
+                dataSourceclust.setDbType(resultSet.getString("DB_TYPE"));
+                if(resultSet.getString("MAX_ACTIVE") != null){
+                    dataSourceclust.setMaxActive(resultSet.getInt("MAX_ACTIVE"));
+                }
+                if(resultSet.getString("MIN_IDLE") != null){
+                    dataSourceclust.setMinIdle(resultSet.getInt("MIN_IDLE"));
+                }
+                if(resultSet.getString("MAX_WAIT") != null){
+                    dataSourceclust.setMaxWait(resultSet.getInt("MAX_WAIT"));
+                }
+                if(resultSet.getString("INI_SIZE") != null){
+                    dataSourceclust.setInitialSize(resultSet.getInt("INI_SIZE"));
+                }
+
                 targetDataSources.put(resultSet.getString("DS_NAME"), dataSourceclust);
             }
         } catch (SQLException e) {
