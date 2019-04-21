@@ -24,8 +24,8 @@ public class DynamicRoutingDataSource extends AbstractRoutingDataSource {
      */
     @Override
     protected Object determineCurrentLookupKey() {
-        logger.info("Current DataSource is [{}]", DatabaseContextHolder.getDataSourceType());
-        return DatabaseContextHolder.getDataSourceType();
+        logger.info("Current DataSource is [{}]", DynamicDataSourceContextHolder.getDataSourceType());
+        return DynamicDataSourceContextHolder.getDataSourceType();
     }
 
     @Override
@@ -55,7 +55,7 @@ public class DynamicRoutingDataSource extends AbstractRoutingDataSource {
             Connection connection = null;
             // 排除连接不上的错误
             try {
-                Class.forName(map.get(DruidDataSourceFactory.PROP_DRIVERCLASSNAME));
+                Class<?> aClass = Class.forName(map.get(DruidDataSourceFactory.PROP_DRIVERCLASSNAME));
                 connection = DriverManager.getConnection(
                         map.get(DruidDataSourceFactory.PROP_URL),
                         map.get(DruidDataSourceFactory.PROP_USERNAME),
@@ -75,9 +75,9 @@ public class DynamicRoutingDataSource extends AbstractRoutingDataSource {
             Map<Object, Object> targetMap = DynamicRoutingDataSource.targetDataSources;
             targetMap.put(database, druidDataSource);
             // 当前 targetDataSources 与 父类 targetDataSources 为同一对象 所以不需要set
-//   this.setTargetDataSources(targetMap);
+            this.setTargetDataSources(targetMap);
             this.afterPropertiesSet();
-            logger.info("dataSource {} has been added", database);
+            logger.info("dataSource [{}] has been added", database);
         } catch (Exception e) {
             logger.error(e.getMessage());
             return false;

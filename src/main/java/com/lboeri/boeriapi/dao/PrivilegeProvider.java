@@ -55,12 +55,12 @@ public  class PrivilegeProvider {
         String sql = "";
         ApiConfig entity = new ApiConfig();
 
-        DatabaseContextHolder.setDataSourceType(DatabaseContextHolder.DEFAULT);
+        DynamicDataSourceContextHolder.setDataSourceType(DynamicDataSourceContextHolder.DEFAULT);
         entity.setApiName(param.get(BoeriApiController.APINAME)+"");
         List<ApiConfig> config = privilegeProvider.apiConfigSgMapper.selectByEntity(entity);
         if (config != null && config.size() > 0) {
             ApiConfig rsConfig = config.get(0);
-            DatabaseContextHolder.setDataSourceType(rsConfig.getDsName());
+            DynamicDataSourceContextHolder.setDataSourceType(rsConfig.getDsName());
             try {
                 return Replacement.buildSql(type,rsConfig.getExcSql(), param);
             } catch (JDOMException e) {

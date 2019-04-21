@@ -23,9 +23,9 @@ public class MybatisConfig {
     @Autowired
     private DataSourceProperties dataSourceProperties;
 
-    @Bean(name = "dataSource")
+    @Bean(name = "dynamicDataSource")
     @Primary
-    public DataSourceRouter dataSource() {
+    public DynamicRoutingDataSource dataSource() {
 
         /**
          * 创建PreparedStatement对象
@@ -36,7 +36,7 @@ public class MybatisConfig {
          */
         ResultSet resultSet = null;
 
-        DataSourceRouter dataSourceRouter = new DataSourceRouter();
+        DynamicRoutingDataSource dataSourceRouter = new DynamicRoutingDataSource();
         Map<Object, Object> targetDataSources = new HashMap<Object, Object>();
         DruidDataSource dataSource = new DruidDataSource();
         dataSource.setUrl(dataSourceProperties.getUrl());
@@ -48,7 +48,7 @@ public class MybatisConfig {
 
             //默认数据源
             dataSourceRouter.setDefaultTargetDataSource(dataSource);
-            targetDataSources.put(DatabaseContextHolder.DEFAULT, dataSource);
+            targetDataSources.put(DynamicDataSourceContextHolder.DEFAULT, dataSource);
 
             StringBuffer sql = new StringBuffer("");
             sql.append(" SELECT  ");
@@ -87,19 +87,24 @@ public class MybatisConfig {
                 dataSourceclust.setUsername(resultSet.getString("USER_NAME"));
                 dataSourceclust.setPassword(resultSet.getString("USER_PASSWORD"));
                 dataSourceclust.setDbType(resultSet.getString("DB_TYPE"));
-                if(resultSet.getString("MAX_ACTIVE") != null){
+                if (resultSet.getString("MAX_ACTIVE") != null) {
                     dataSourceclust.setMaxActive(resultSet.getInt("MAX_ACTIVE"));
                 }
-                if(resultSet.getString("MIN_IDLE") != null){
+                if (resultSet.getString("MIN_IDLE") != null) {
                     dataSourceclust.setMinIdle(resultSet.getInt("MIN_IDLE"));
                 }
-                if(resultSet.getString("MAX_WAIT") != null){
+                if (resultSet.getString("MAX_WAIT") != null) {
                     dataSourceclust.setMaxWait(resultSet.getInt("MAX_WAIT"));
                 }
-                if(resultSet.getString("INI_SIZE") != null){
+                if (resultSet.getString("INI_SIZE") != null) {
                     dataSourceclust.setInitialSize(resultSet.getInt("INI_SIZE"));
                 }
-
+                if(resultSet.getString("TEST_WHILE_IDLE") != null ){
+                    if(resultSet.getBoolean("TEST_WHILE_IDLE")){
+                        dataSourceclust.setValidationQuery(resultSet.getString("VALIDATION_QUERY"));
+                    }
+                    dataSourceclust.setTestWhileIdle(resultSet.getBoolean("TEST_WHILE_IDLE"));
+                }
                 targetDataSources.put(resultSet.getString("DS_NAME"), dataSourceclust);
             }
         } catch (SQLException e) {
@@ -116,7 +121,7 @@ public class MybatisConfig {
                 e.printStackTrace();
             }
         }
-            //制定数据源
+        //制定数据源
         dataSourceRouter.setTargetDataSources(targetDataSources);
         return dataSourceRouter;
 
@@ -124,6 +129,7 @@ public class MybatisConfig {
 
     public SqlSessionFactory sqlSessionFactory() throws Exception {
         SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
+        //必须将动态数据源添加到 sqlSessionFactoryBean
         sqlSessionFactoryBean.setDataSource(dataSource());
         return sqlSessionFactoryBean.getObject();
     }
@@ -131,10 +137,10 @@ public class MybatisConfig {
     /**
      * 配置事务管理器
      */
-     @Bean
-     public DataSourceTransactionManager transactionManager(DataSourceRouter dataSource) throws Exception {
-                 return new DataSourceTransactionManager(dataSource);
-     }
+    @Bean
+    public DataSourceTransactionManager transactionManager(DynamicRoutingDataSource dataSource) throws Exception {
+        return new DataSourceTransactionManager(dataSource);
+    }
 
 
 }
