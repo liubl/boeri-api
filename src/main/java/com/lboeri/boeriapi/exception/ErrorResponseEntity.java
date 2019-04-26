@@ -1,4 +1,4 @@
-package com.lpf.chapter17.exception;
+package com.lboeri.boeriapi.exception;
 
 public class ErrorResponseEntity {
 

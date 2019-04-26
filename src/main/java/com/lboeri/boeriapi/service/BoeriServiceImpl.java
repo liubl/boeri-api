@@ -27,7 +27,7 @@ public class BoeriServiceImpl implements BoeriService {
         Map<String,Object> rsMap = new HashMap<String,Object>();
         System.out.println(datasource.getDsCnName());
         ExtDatasource extDatasource = extDatasourceMapper.selectByPrimaryKey(datasource.getDsName());
-        if(extDatasource != null && extDatasource.getDsUrl().length() > 0){
+        if(extDatasource == null || extDatasource.getDsUrl().length() == 0){
             int i = extDatasourceMapper.insertSelective(datasource);
             if(i > 0){
                 // 构建 DataSource 属性,

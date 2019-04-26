@@ -1,7 +1,5 @@
-package com.lpf.chapter17.config;
+package com.lboeri.boeriapi.exception;
 
-import com.lpf.chapter17.exception.CustomException;
-import com.lpf.chapter17.exception.ErrorResponseEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
