@@ -4,9 +4,11 @@ import com.alibaba.druid.pool.DruidDataSourceFactory;
 import com.lboeri.boeriapi.dao.DynamicRoutingDataSource;
 import com.lboeri.boeriapi.dao.generator.entity.ExtDatasource;
 import com.lboeri.boeriapi.dao.singleton.BoeriApiMapper;
+import org.hibernate.validator.constraints.Length;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -54,7 +56,7 @@ public class BoeriApiController {
 
     @Transactional(rollbackFor = Exception.class)
     @RequestMapping(value="/{api_name}" ,method = RequestMethod.DELETE)
-    public Map<String,Object> delBoeriApi(@RequestParam Map<String, Object> params, @PathVariable("api_name") String apiName) {
+    public Map<String,Object> delBoeriApi(@RequestParam(required = true) Map<String, Object> params, @PathVariable("api_name") String apiName) {
         Map<String,Object> reMap = new HashMap<String,Object>();
         params.put(APINAME,apiName);
         Integer i =  boeriApiMapper.deleteByEntity(params);

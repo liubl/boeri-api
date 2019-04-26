@@ -17,6 +17,8 @@ public class DynamicRoutingDataSource extends AbstractRoutingDataSource {
 
     private static Map<Object, Object> targetDataSources = new HashMap<>();
 
+    public static String DSNAME = "DS_NAME";
+
     /**
      * 设置当前数据源
      *
@@ -67,7 +69,7 @@ public class DynamicRoutingDataSource extends AbstractRoutingDataSource {
                 if (connection != null && !connection.isClosed())
                     connection.close();
             }
-            String database = map.get("database");//获取要添加的数据库名
+            String database = map.get(DSNAME);//获取要添加的数据库名
             if (StringUtils.isBlank(database)) return false;
             if (DynamicRoutingDataSource.isExistDataSource(database)) return true;
             DruidDataSource druidDataSource = (DruidDataSource) DruidDataSourceFactory.createDataSource(map);

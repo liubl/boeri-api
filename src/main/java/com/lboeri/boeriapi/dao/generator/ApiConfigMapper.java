@@ -1,7 +1,9 @@
 package com.lboeri.boeriapi.dao.generator;
 
 import com.lboeri.boeriapi.dao.generator.entity.ApiConfig;
+import org.apache.ibatis.annotations.Mapper;
 
+@Mapper
 public interface ApiConfigMapper {
     int deleteByPrimaryKey(String apiId);
 

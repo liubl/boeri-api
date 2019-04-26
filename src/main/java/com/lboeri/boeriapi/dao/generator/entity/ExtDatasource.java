@@ -1,20 +1,23 @@
 package com.lboeri.boeriapi.dao.generator.entity;
 
+import javax.validation.constraints.NotBlank;
+
 public class ExtDatasource {
+    @NotBlank
     private String dsName;
-
+    @NotBlank
     private String dsCnName;
-
+    @NotBlank
     private String dbType;
-
+    @NotBlank
     private String dsType;
-
+    @NotBlank
     private String driverClassName;
-
+    @NotBlank
     private String dsUrl;
-
+    @NotBlank
     private String userName;
-
+    @NotBlank
     private String userPassword;
 
     private String iniSize;

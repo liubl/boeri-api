@@ -1,7 +1,9 @@
 package com.lboeri.boeriapi.dao.generator;
 
 import com.lboeri.boeriapi.dao.generator.entity.ExtDatasource;
+import org.apache.ibatis.annotations.Mapper;
 
+@Mapper
 public interface ExtDatasourceMapper {
     int deleteByPrimaryKey(String dsName);
 
