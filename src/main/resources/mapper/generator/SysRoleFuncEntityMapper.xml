@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lboeri.boeriapi.dao.generator.SysRoleFuncEntityMapper">
+  <resultMap id="BaseResultMap" type="com.lboeri.boeriapi.dao.generator.entity.SysRoleFuncEntity">
+    <id column="ID" jdbcType="INTEGER" property="id" />
+    <result column="ROLE_CODE" jdbcType="VARCHAR" property="roleCode" />
+    <result column="FUNC_CODE" jdbcType="VARCHAR" property="funcCode" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, ROLE_CODE, FUNC_CODE
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from SYS_ROLE_FUNC_REF
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from SYS_ROLE_FUNC_REF
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.lboeri.boeriapi.dao.generator.entity.SysRoleFuncEntity">
+    insert into SYS_ROLE_FUNC_REF (ID, ROLE_CODE, FUNC_CODE
+      )
+    values (#{id,jdbcType=INTEGER}, #{roleCode,jdbcType=VARCHAR}, #{funcCode,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.lboeri.boeriapi.dao.generator.entity.SysRoleFuncEntity">
+    insert into SYS_ROLE_FUNC_REF
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="roleCode != null">
+        ROLE_CODE,
+      </if>
+      <if test="funcCode != null">
+        FUNC_CODE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="roleCode != null">
+        #{roleCode,jdbcType=VARCHAR},
+      </if>
+      <if test="funcCode != null">
+        #{funcCode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lboeri.boeriapi.dao.generator.entity.SysRoleFuncEntity">
+    update SYS_ROLE_FUNC_REF
+    <set>
+      <if test="roleCode != null">
+        ROLE_CODE = #{roleCode,jdbcType=VARCHAR},
+      </if>
+      <if test="funcCode != null">
+        FUNC_CODE = #{funcCode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lboeri.boeriapi.dao.generator.entity.SysRoleFuncEntity">
+    update SYS_ROLE_FUNC_REF
+    set ROLE_CODE = #{roleCode,jdbcType=VARCHAR},
+      FUNC_CODE = #{funcCode,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -18,6 +18,10 @@ public  class PrivilegeProvider {
     @Autowired
     ApiConfigSgMapper apiConfigSgMapper;
 
+    public static final String DSNAME = "DSNAME";
+
+    public static final String EXCSQL = "EXCSQL";
+
     public static PrivilegeProvider privilegeProvider;
 
     @PostConstruct
@@ -29,6 +33,12 @@ public  class PrivilegeProvider {
     public String querySql(Map<String,Object> param){
 
         String sql = buildSql("select", param);
+        return sql;
+    }
+
+    public String pageSql(Map<String,Object> param){
+
+        String sql = buildPageSql("select", param);
         return sql;
     }
 
@@ -63,6 +73,22 @@ public  class PrivilegeProvider {
             DynamicDataSourceContextHolder.setDataSourceType(rsConfig.getDsName());
             try {
                 return Replacement.buildSql(type,rsConfig.getExcSql(), param);
+            } catch (JDOMException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return sql;
+    }
+
+    private String buildPageSql(String type, Map<String,Object> param){
+
+        String sql = "";
+        if (param.get(DSNAME) != null && param.get(EXCSQL) != null) {
+            DynamicDataSourceContextHolder.setDataSourceType((String) param.get(DSNAME));
+            try {
+                return Replacement.buildSql(type, (String) param.get(EXCSQL), param);
             } catch (JDOMException e) {
                 e.printStackTrace();
             } catch (IOException e) {

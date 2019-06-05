@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lboeri.boeriapi.dao.generator.SysDeptEntityMapper">
+  <resultMap id="BaseResultMap" type="com.lboeri.boeriapi.dao.generator.entity.SysDeptEntity">
+    <id column="ID" jdbcType="INTEGER" property="id" />
+    <result column="CODE" jdbcType="VARCHAR" property="code" />
+    <result column="PARENT_CODE" jdbcType="VARCHAR" property="parentCode" />
+    <result column="NAME" jdbcType="VARCHAR" property="name" />
+    <result column="SHORT_NAME" jdbcType="VARCHAR" property="shortName" />
+    <result column="DEPT_DESC" jdbcType="VARCHAR" property="deptDesc" />
+    <result column="ORDER_ID" jdbcType="INTEGER" property="orderId" />
+    <result column="D_LEVEL" jdbcType="VARCHAR" property="dLevel" />
+    <result column="PLACE_CODE" jdbcType="VARCHAR" property="placeCode" />
+    <result column="PHYSI_CODE" jdbcType="VARCHAR" property="physiCode" />
+    <result column="TEL" jdbcType="VARCHAR" property="tel" />
+    <result column="FAX" jdbcType="VARCHAR" property="fax" />
+    <result column="DEPT_EMAIL" jdbcType="VARCHAR" property="deptEmail" />
+    <result column="LEADER" jdbcType="VARCHAR" property="leader" />
+    <result column="CREATE_USER" jdbcType="VARCHAR" property="createUser" />
+    <result column="CREATE_DATE" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="UPDATE_USER" jdbcType="VARCHAR" property="updateUser" />
+    <result column="UPDATE_DATE" jdbcType="TIMESTAMP" property="updateDate" />
+    <result column="IS_USABLE" jdbcType="CHAR" property="isUsable" />
+    <result column="REMARKS" jdbcType="VARCHAR" property="remarks" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, CODE, PARENT_CODE, NAME, SHORT_NAME, DEPT_DESC, ORDER_ID, D_LEVEL, PLACE_CODE, 
+    PHYSI_CODE, TEL, FAX, DEPT_EMAIL, LEADER, CREATE_USER, CREATE_DATE, UPDATE_USER, 
+    UPDATE_DATE, IS_USABLE, REMARKS
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from SYS_DEPT
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from SYS_DEPT
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.lboeri.boeriapi.dao.generator.entity.SysDeptEntity">
+    insert into SYS_DEPT (ID, CODE, PARENT_CODE, 
+      NAME, SHORT_NAME, DEPT_DESC, 
+      ORDER_ID, D_LEVEL, PLACE_CODE, 
+      PHYSI_CODE, TEL, FAX, 
+      DEPT_EMAIL, LEADER, CREATE_USER, 
+      CREATE_DATE, UPDATE_USER, UPDATE_DATE, 
+      IS_USABLE, REMARKS)
+    values (#{id,jdbcType=INTEGER}, #{code,jdbcType=VARCHAR}, #{parentCode,jdbcType=VARCHAR}, 
+      #{name,jdbcType=VARCHAR}, #{shortName,jdbcType=VARCHAR}, #{deptDesc,jdbcType=VARCHAR}, 
+      #{orderId,jdbcType=INTEGER}, #{dLevel,jdbcType=VARCHAR}, #{placeCode,jdbcType=VARCHAR}, 
+      #{physiCode,jdbcType=VARCHAR}, #{tel,jdbcType=VARCHAR}, #{fax,jdbcType=VARCHAR}, 
+      #{deptEmail,jdbcType=VARCHAR}, #{leader,jdbcType=VARCHAR}, #{createUser,jdbcType=VARCHAR}, 
+      #{createDate,jdbcType=TIMESTAMP}, #{updateUser,jdbcType=VARCHAR}, #{updateDate,jdbcType=TIMESTAMP}, 
+      #{isUsable,jdbcType=CHAR}, #{remarks,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.lboeri.boeriapi.dao.generator.entity.SysDeptEntity">
+    insert into SYS_DEPT
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="code != null">
+        CODE,
+      </if>
+      <if test="parentCode != null">
+        PARENT_CODE,
+      </if>
+      <if test="name != null">
+        NAME,
+      </if>
+      <if test="shortName != null">
+        SHORT_NAME,
+      </if>
+      <if test="deptDesc != null">
+        DEPT_DESC,
+      </if>
+      <if test="orderId != null">
+        ORDER_ID,
+      </if>
+      <if test="dLevel != null">
+        D_LEVEL,
+      </if>
+      <if test="placeCode != null">
+        PLACE_CODE,
+      </if>
+      <if test="physiCode != null">
+        PHYSI_CODE,
+      </if>
+      <if test="tel != null">
+        TEL,
+      </if>
+      <if test="fax != null">
+        FAX,
+      </if>
+      <if test="deptEmail != null">
+        DEPT_EMAIL,
+      </if>
+      <if test="leader != null">
+        LEADER,
+      </if>
+      <if test="createUser != null">
+        CREATE_USER,
+      </if>
+      <if test="createDate != null">
+        CREATE_DATE,
+      </if>
+      <if test="updateUser != null">
+        UPDATE_USER,
+      </if>
+      <if test="updateDate != null">
+        UPDATE_DATE,
+      </if>
+      <if test="isUsable != null">
+        IS_USABLE,
+      </if>
+      <if test="remarks != null">
+        REMARKS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="code != null">
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="parentCode != null">
+        #{parentCode,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="shortName != null">
+        #{shortName,jdbcType=VARCHAR},
+      </if>
+      <if test="deptDesc != null">
+        #{deptDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="orderId != null">
+        #{orderId,jdbcType=INTEGER},
+      </if>
+      <if test="dLevel != null">
+        #{dLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="placeCode != null">
+        #{placeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="physiCode != null">
+        #{physiCode,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null">
+        #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="fax != null">
+        #{fax,jdbcType=VARCHAR},
+      </if>
+      <if test="deptEmail != null">
+        #{deptEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="leader != null">
+        #{leader,jdbcType=VARCHAR},
+      </if>
+      <if test="createUser != null">
+        #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUser != null">
+        #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDate != null">
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isUsable != null">
+        #{isUsable,jdbcType=CHAR},
+      </if>
+      <if test="remarks != null">
+        #{remarks,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lboeri.boeriapi.dao.generator.entity.SysDeptEntity">
+    update SYS_DEPT
+    <set>
+      <if test="code != null">
+        CODE = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="parentCode != null">
+        PARENT_CODE = #{parentCode,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="shortName != null">
+        SHORT_NAME = #{shortName,jdbcType=VARCHAR},
+      </if>
+      <if test="deptDesc != null">
+        DEPT_DESC = #{deptDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="orderId != null">
+        ORDER_ID = #{orderId,jdbcType=INTEGER},
+      </if>
+      <if test="dLevel != null">
+        D_LEVEL = #{dLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="placeCode != null">
+        PLACE_CODE = #{placeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="physiCode != null">
+        PHYSI_CODE = #{physiCode,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null">
+        TEL = #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="fax != null">
+        FAX = #{fax,jdbcType=VARCHAR},
+      </if>
+      <if test="deptEmail != null">
+        DEPT_EMAIL = #{deptEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="leader != null">
+        LEADER = #{leader,jdbcType=VARCHAR},
+      </if>
+      <if test="createUser != null">
+        CREATE_USER = #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUser != null">
+        UPDATE_USER = #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDate != null">
+        UPDATE_DATE = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isUsable != null">
+        IS_USABLE = #{isUsable,jdbcType=CHAR},
+      </if>
+      <if test="remarks != null">
+        REMARKS = #{remarks,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lboeri.boeriapi.dao.generator.entity.SysDeptEntity">
+    update SYS_DEPT
+    set CODE = #{code,jdbcType=VARCHAR},
+      PARENT_CODE = #{parentCode,jdbcType=VARCHAR},
+      NAME = #{name,jdbcType=VARCHAR},
+      SHORT_NAME = #{shortName,jdbcType=VARCHAR},
+      DEPT_DESC = #{deptDesc,jdbcType=VARCHAR},
+      ORDER_ID = #{orderId,jdbcType=INTEGER},
+      D_LEVEL = #{dLevel,jdbcType=VARCHAR},
+      PLACE_CODE = #{placeCode,jdbcType=VARCHAR},
+      PHYSI_CODE = #{physiCode,jdbcType=VARCHAR},
+      TEL = #{tel,jdbcType=VARCHAR},
+      FAX = #{fax,jdbcType=VARCHAR},
+      DEPT_EMAIL = #{deptEmail,jdbcType=VARCHAR},
+      LEADER = #{leader,jdbcType=VARCHAR},
+      CREATE_USER = #{createUser,jdbcType=VARCHAR},
+      CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+      UPDATE_USER = #{updateUser,jdbcType=VARCHAR},
+      UPDATE_DATE = #{updateDate,jdbcType=TIMESTAMP},
+      IS_USABLE = #{isUsable,jdbcType=CHAR},
+      REMARKS = #{remarks,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

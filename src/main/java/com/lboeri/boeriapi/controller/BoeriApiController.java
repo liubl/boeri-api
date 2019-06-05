@@ -1,21 +1,13 @@
 package com.lboeri.boeriapi.controller;
 
-import com.alibaba.druid.pool.DruidDataSourceFactory;
-import com.lboeri.boeriapi.dao.DynamicRoutingDataSource;
-import com.lboeri.boeriapi.dao.generator.entity.ExtDatasource;
 import com.lboeri.boeriapi.dao.singleton.BoeriApiMapper;
-import org.hibernate.validator.constraints.Length;
+import com.lboeri.boeriapi.service.BoeriService;
+import com.lboeri.boeriapi.util.Result;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.env.Environment;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import javax.annotation.Resource;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @RestController
 @RequestMapping("/api")
@@ -24,44 +16,53 @@ public class BoeriApiController {
     public static String APINAME = "APINAME";
     @Autowired
     BoeriApiMapper boeriApiMapper;
+    @Autowired
+    BoeriService boeriServiceImpl;
 
-    @RequestMapping(value="/{api_name}" ,method = RequestMethod.GET)
-    public Map<String,Object> boeriApi(@RequestParam Map<String, Object> params, @PathVariable("api_name") String apiName) {
+    @GetMapping(value="/page/{api_name}")
+    public Map<String,Object> pageBoeriApi(@RequestParam Map<String, Object> params, @PathVariable("api_name") String apiName) {
+        Map<String,Object> reMap = new HashMap<String,Object>();
+        params.put(APINAME,apiName);
+        List<LinkedHashMap> list =  new ArrayList<>();
+        if(params.get("pageNum") != null && params.get("pageSize") != null){
+            reMap =  boeriServiceImpl.pageQuery(params);
+        }
+        return Result.ok(reMap);
+    }
+
+    @GetMapping(value="/query/{api_name}")
+    public Map<String,Object> queryBoeriApi(@RequestParam Map<String, Object> params, @PathVariable("api_name") String apiName) {
         Map<String,Object> reMap = new HashMap<String,Object>();
         params.put(APINAME,apiName);
         List<LinkedHashMap> list =  boeriApiMapper.selectByEntity(params);
-        reMap.put("obj",list);
-        return reMap;
+        return Result.ok(list);
     }
 
     @Transactional(rollbackFor = Exception.class)
-    @RequestMapping(value="/{api_name}" ,method = RequestMethod.PUT)
+    @PutMapping(value="/{api_name}")
     public Map<String,Object> modBoeriApi(@RequestParam Map<String, Object> params, @PathVariable("api_name") String apiName) {
         Map<String,Object> reMap = new HashMap<String,Object>();
         params.put(APINAME,apiName);
         Integer i =  boeriApiMapper.updateByEntity(params);
-        reMap.put("obj",i);
-        return reMap;
+        return Result.ok(i);
     }
 
     @Transactional(rollbackFor = Exception.class)
-    @RequestMapping(value="/{api_name}" ,method = RequestMethod.POST)
+    @PostMapping(value="/{api_name}")
     public Map<String,Object> addBoeriApi(@RequestParam Map<String, Object> params, @PathVariable("api_name") String apiName) {
         Map<String,Object> reMap = new HashMap<String,Object>();
         params.put(APINAME,apiName);
         Integer i =  boeriApiMapper.insertByEntity(params);
-        reMap.put("obj",i);
-        return reMap;
+        return Result.ok(i);
     }
 
     @Transactional(rollbackFor = Exception.class)
-    @RequestMapping(value="/{api_name}" ,method = RequestMethod.DELETE)
+    @DeleteMapping(value="/{api_name}")
     public Map<String,Object> delBoeriApi(@RequestParam(required = true) Map<String, Object> params, @PathVariable("api_name") String apiName) {
         Map<String,Object> reMap = new HashMap<String,Object>();
         params.put(APINAME,apiName);
         Integer i =  boeriApiMapper.deleteByEntity(params);
-        reMap.put("obj",i);
-        return reMap;
+        return Result.ok(i);
     }
 
 }

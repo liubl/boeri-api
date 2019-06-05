@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lboeri.boeriapi.dao.generator.SysFuncNodeEntityMapper">
+  <resultMap id="BaseResultMap" type="com.lboeri.boeriapi.dao.generator.entity.SysFuncNodeEntity">
+    <id column="ID" jdbcType="INTEGER" property="id" />
+    <result column="FUNC_NODE_CODE" jdbcType="VARCHAR" property="funcNodeCode" />
+    <result column="FUNC_NODE_NAME" jdbcType="VARCHAR" property="funcNodeName" />
+    <result column="PARENT_CODE" jdbcType="VARCHAR" property="parentCode" />
+    <result column="TO_SYSTEM" jdbcType="VARCHAR" property="toSystem" />
+    <result column="FUNC_TYPE" jdbcType="CHAR" property="funcType" />
+    <result column="ORDER_ID" jdbcType="INTEGER" property="orderId" />
+    <result column="HTML" jdbcType="VARCHAR" property="html" />
+    <result column="REL" jdbcType="VARCHAR" property="rel" />
+    <result column="IS_ROOT" jdbcType="CHAR" property="isRoot" />
+    <result column="EXTERNAL" jdbcType="CHAR" property="external" />
+    <result column="CREATE_USER" jdbcType="VARCHAR" property="createUser" />
+    <result column="CREATE_DATE" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="UPDATE_USER" jdbcType="VARCHAR" property="updateUser" />
+    <result column="UPDATE_DATE" jdbcType="TIMESTAMP" property="updateDate" />
+    <result column="IS_USABLE" jdbcType="CHAR" property="isUsable" />
+    <result column="REMARK" jdbcType="VARCHAR" property="remark" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, FUNC_NODE_CODE, FUNC_NODE_NAME, PARENT_CODE, TO_SYSTEM, FUNC_TYPE, ORDER_ID, 
+    HTML, REL, IS_ROOT, EXTERNAL, CREATE_USER, CREATE_DATE, UPDATE_USER, UPDATE_DATE, 
+    IS_USABLE, REMARK
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from SYS_FUNC_NODE
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from SYS_FUNC_NODE
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.lboeri.boeriapi.dao.generator.entity.SysFuncNodeEntity">
+    insert into SYS_FUNC_NODE (ID, FUNC_NODE_CODE, FUNC_NODE_NAME, 
+      PARENT_CODE, TO_SYSTEM, FUNC_TYPE, 
+      ORDER_ID, HTML, REL, 
+      IS_ROOT, EXTERNAL, CREATE_USER, 
+      CREATE_DATE, UPDATE_USER, UPDATE_DATE, 
+      IS_USABLE, REMARK)
+    values (#{id,jdbcType=INTEGER}, #{funcNodeCode,jdbcType=VARCHAR}, #{funcNodeName,jdbcType=VARCHAR}, 
+      #{parentCode,jdbcType=VARCHAR}, #{toSystem,jdbcType=VARCHAR}, #{funcType,jdbcType=CHAR}, 
+      #{orderId,jdbcType=INTEGER}, #{html,jdbcType=VARCHAR}, #{rel,jdbcType=VARCHAR}, 
+      #{isRoot,jdbcType=CHAR}, #{external,jdbcType=CHAR}, #{createUser,jdbcType=VARCHAR}, 
+      #{createDate,jdbcType=TIMESTAMP}, #{updateUser,jdbcType=VARCHAR}, #{updateDate,jdbcType=TIMESTAMP}, 
+      #{isUsable,jdbcType=CHAR}, #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.lboeri.boeriapi.dao.generator.entity.SysFuncNodeEntity">
+    insert into SYS_FUNC_NODE
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="funcNodeCode != null">
+        FUNC_NODE_CODE,
+      </if>
+      <if test="funcNodeName != null">
+        FUNC_NODE_NAME,
+      </if>
+      <if test="parentCode != null">
+        PARENT_CODE,
+      </if>
+      <if test="toSystem != null">
+        TO_SYSTEM,
+      </if>
+      <if test="funcType != null">
+        FUNC_TYPE,
+      </if>
+      <if test="orderId != null">
+        ORDER_ID,
+      </if>
+      <if test="html != null">
+        HTML,
+      </if>
+      <if test="rel != null">
+        REL,
+      </if>
+      <if test="isRoot != null">
+        IS_ROOT,
+      </if>
+      <if test="external != null">
+        EXTERNAL,
+      </if>
+      <if test="createUser != null">
+        CREATE_USER,
+      </if>
+      <if test="createDate != null">
+        CREATE_DATE,
+      </if>
+      <if test="updateUser != null">
+        UPDATE_USER,
+      </if>
+      <if test="updateDate != null">
+        UPDATE_DATE,
+      </if>
+      <if test="isUsable != null">
+        IS_USABLE,
+      </if>
+      <if test="remark != null">
+        REMARK,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="funcNodeCode != null">
+        #{funcNodeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="funcNodeName != null">
+        #{funcNodeName,jdbcType=VARCHAR},
+      </if>
+      <if test="parentCode != null">
+        #{parentCode,jdbcType=VARCHAR},
+      </if>
+      <if test="toSystem != null">
+        #{toSystem,jdbcType=VARCHAR},
+      </if>
+      <if test="funcType != null">
+        #{funcType,jdbcType=CHAR},
+      </if>
+      <if test="orderId != null">
+        #{orderId,jdbcType=INTEGER},
+      </if>
+      <if test="html != null">
+        #{html,jdbcType=VARCHAR},
+      </if>
+      <if test="rel != null">
+        #{rel,jdbcType=VARCHAR},
+      </if>
+      <if test="isRoot != null">
+        #{isRoot,jdbcType=CHAR},
+      </if>
+      <if test="external != null">
+        #{external,jdbcType=CHAR},
+      </if>
+      <if test="createUser != null">
+        #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUser != null">
+        #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDate != null">
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isUsable != null">
+        #{isUsable,jdbcType=CHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lboeri.boeriapi.dao.generator.entity.SysFuncNodeEntity">
+    update SYS_FUNC_NODE
+    <set>
+      <if test="funcNodeCode != null">
+        FUNC_NODE_CODE = #{funcNodeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="funcNodeName != null">
+        FUNC_NODE_NAME = #{funcNodeName,jdbcType=VARCHAR},
+      </if>
+      <if test="parentCode != null">
+        PARENT_CODE = #{parentCode,jdbcType=VARCHAR},
+      </if>
+      <if test="toSystem != null">
+        TO_SYSTEM = #{toSystem,jdbcType=VARCHAR},
+      </if>
+      <if test="funcType != null">
+        FUNC_TYPE = #{funcType,jdbcType=CHAR},
+      </if>
+      <if test="orderId != null">
+        ORDER_ID = #{orderId,jdbcType=INTEGER},
+      </if>
+      <if test="html != null">
+        HTML = #{html,jdbcType=VARCHAR},
+      </if>
+      <if test="rel != null">
+        REL = #{rel,jdbcType=VARCHAR},
+      </if>
+      <if test="isRoot != null">
+        IS_ROOT = #{isRoot,jdbcType=CHAR},
+      </if>
+      <if test="external != null">
+        EXTERNAL = #{external,jdbcType=CHAR},
+      </if>
+      <if test="createUser != null">
+        CREATE_USER = #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUser != null">
+        UPDATE_USER = #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDate != null">
+        UPDATE_DATE = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isUsable != null">
+        IS_USABLE = #{isUsable,jdbcType=CHAR},
+      </if>
+      <if test="remark != null">
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lboeri.boeriapi.dao.generator.entity.SysFuncNodeEntity">
+    update SYS_FUNC_NODE
+    set FUNC_NODE_CODE = #{funcNodeCode,jdbcType=VARCHAR},
+      FUNC_NODE_NAME = #{funcNodeName,jdbcType=VARCHAR},
+      PARENT_CODE = #{parentCode,jdbcType=VARCHAR},
+      TO_SYSTEM = #{toSystem,jdbcType=VARCHAR},
+      FUNC_TYPE = #{funcType,jdbcType=CHAR},
+      ORDER_ID = #{orderId,jdbcType=INTEGER},
+      HTML = #{html,jdbcType=VARCHAR},
+      REL = #{rel,jdbcType=VARCHAR},
+      IS_ROOT = #{isRoot,jdbcType=CHAR},
+      EXTERNAL = #{external,jdbcType=CHAR},
+      CREATE_USER = #{createUser,jdbcType=VARCHAR},
+      CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+      UPDATE_USER = #{updateUser,jdbcType=VARCHAR},
+      UPDATE_DATE = #{updateDate,jdbcType=TIMESTAMP},
+      IS_USABLE = #{isUsable,jdbcType=CHAR},
+      REMARK = #{remark,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

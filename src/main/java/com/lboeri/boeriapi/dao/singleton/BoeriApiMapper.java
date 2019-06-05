@@ -13,6 +13,9 @@ public interface BoeriApiMapper {
     @SelectProvider(type = PrivilegeProvider.class, method = "querySql")
     List<LinkedHashMap> selectByEntity(Map<String,Object> param);
 
+    @SelectProvider(type = PrivilegeProvider.class, method = "pageSql")
+    List<LinkedHashMap> pageByEntity(Map<String,Object> param);
+
     @UpdateProvider(type = PrivilegeProvider.class, method = "modSql")
     Integer updateByEntity(Map<String,Object> param);
 
